@@ -1,0 +1,52 @@
+{
+  "name": "@ldesign/notification",
+  "version": "0.1.0",
+  "description": "LDesign 通知系统 - Toast/Message/Notification/Alert，支持 React/Vue",
+  "keywords": ["ldesign", "notification", "toast", "message", "alert", "vue", "react"],
+  "author": "LDesign Team",
+  "license": "MIT",
+  "type": "module",
+  "main": "./lib/index.cjs",
+  "module": "./es/index.js",
+  "types": "./es/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./es/index.d.ts",
+      "import": "./es/index.js",
+      "require": "./lib/index.cjs"
+    },
+    "./vue": {
+      "types": "./es/vue/index.d.ts",
+      "import": "./es/vue/index.js",
+      "require": "./lib/vue/index.cjs"
+    },
+    "./react": {
+      "types": "./es/react/index.d.ts",
+      "import": "./es/react/index.js",
+      "require": "./lib/react/index.cjs"
+    }
+  },
+  "scripts": {
+    "build": "ldesign-builder build -f esm,cjs,dts",
+    "dev": "ldesign-builder watch",
+    "lint": "eslint . --fix"
+  },
+  "dependencies": {
+    "@ldesign/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "@ldesign/builder": "workspace:*",
+    "@antfu/eslint-config": "^6.0.0",
+    "eslint": "^9.18.0",
+    "typescript": "^5.7.3"
+  },
+  "peerDependencies": {
+    "vue": "^3.3.0",
+    "react": "^18.0.0"
+  },
+  "peerDependenciesMeta": {
+    "vue": { "optional": true },
+    "react": { "optional": true }
+  }
+}
+
