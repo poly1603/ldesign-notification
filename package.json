@@ -27,8 +27,11 @@
     }
   },
   "scripts": {
-    "build": "ldesign-builder build -f esm,cjs,dts",
-    "dev": "ldesign-builder watch",
+    "build": "ldesign-builder build",
+    "build:watch": "ldesign-builder build --watch",
+    "dev": "ldesign-builder build --mode development --watch",
+    "clean": "rimraf es lib dist coverage",
+    "prepublishOnly": "pnpm run clean && pnpm run build",
     "lint": "eslint . --fix"
   },
   "dependencies": {
