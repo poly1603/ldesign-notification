@@ -1,36 +1,68 @@
 /**
- * @ldesign/notification - 通知系统
+ * @ldesign/notification - 通知系统主入口
  */
 
-export interface NotificationOptions {
-  type?: 'success' | 'error' | 'warning' | 'info'
-  duration?: number
-  position?: 'top' | 'bottom' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
-}
+// 导入样式
+import './styles/index.css'
 
-export class NotificationManager {
-  toast(message: string, options?: NotificationOptions) {
-    console.info('[Toast]', message, options)
-  }
+// 导出类型
+export type * from './types'
 
-  success(message: string) {
-    this.toast(message, { type: 'success' })
-  }
+// 导出核心类
+export { NotificationManager, notificationManager } from './core/manager'
+export { NotificationQueue } from './core/queue'
+export { PositionManager } from './core/position'
+export { AnimationEngine } from './core/animation'
+export { StackManager } from './core/stack'
 
-  error(message: string) {
-    this.toast(message, { type: 'error' })
-  }
+// 导出渲染器
+export {
+  BaseRenderer,
+  ToastRenderer,
+  MessageRenderer,
+  NotificationRenderer,
+  AlertRenderer,
+} from './renderers'
 
-  warning(message: string) {
-    this.toast(message, { type: 'warning' })
-  }
+export type { RendererConfig } from './renderers'
 
-  info(message: string) {
-    this.toast(message, { type: 'info' })
-  }
-}
+// 导出工具函数
+export {
+  generateId,
+  debounce,
+  throttle,
+  deepMerge,
+  isBrowser,
+  isNotificationSupported,
+} from './utils/helpers'
 
-export const notification = new NotificationManager()
+// 导出高级功能
+export {
+  BrowserNotificationManager,
+  browserNotificationManager,
+  SoundManager,
+  soundManager,
+  DEFAULT_SOUNDS,
+  HistoryManager,
+  historyManager,
+} from './features'
 
+export type {
+  BrowserNotificationConfig,
+  NotificationPermission,
+  SoundConfig,
+  SoundMap,
+  HistoryConfig,
+  HistoryItem,
+} from './features'
+
+// 导出默认实例
+export const notification = notificationManager
+export const toast = notificationManager.toast
+export const message = notificationManager.message
+export const alert = notificationManager.alert
+
+// 默认导出
+export default notificationManager
 
 

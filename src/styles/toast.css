@@ -1,0 +1,71 @@
+/**
+ * Toast 样式
+ */
+
+.ldesign-toast {
+  composes: ldesign-notification-item;
+  padding: var(--ldn-toast-padding);
+  min-width: var(--ldn-toast-min-width);
+  max-width: var(--ldn-toast-max-width);
+  border-radius: var(--ldn-toast-radius);
+  box-shadow: var(--ldn-toast-shadow);
+  position: relative;
+}
+
+.ldesign-toast--success {
+  background: var(--ldn-color-success-light);
+  border-color: var(--ldn-color-success);
+}
+
+.ldesign-toast--error {
+  background: var(--ldn-color-error-light);
+  border-color: var(--ldn-color-error);
+}
+
+.ldesign-toast--warning {
+  background: var(--ldn-color-warning-light);
+  border-color: var(--ldn-color-warning);
+}
+
+.ldesign-toast--info {
+  background: var(--ldn-color-info-light);
+  border-color: var(--ldn-color-info);
+}
+
+/* Toast 容器特定样式 */
+.ldesign-notification-container--toast {
+  min-width: var(--ldn-toast-min-width);
+}
+
+/* 手势关闭效果 */
+.ldesign-toast.dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.ldesign-toast.will-dismiss {
+  opacity: 0.6;
+  transform: scale(0.95);
+}
+
+/* Toast 内容布局 */
+.ldesign-toast-content {
+  display: flex;
+  align-items: center;
+  gap: var(--ldn-spacing-md);
+  flex: 1;
+}
+
+.ldesign-toast-message {
+  flex: 1;
+  font-size: var(--ldn-font-size-md);
+  line-height: 1.5;
+}
+
+/* Toast 图标大小 */
+.ldesign-toast .ldesign-notification-icon {
+  font-size: 18px;
+}
+
+
+

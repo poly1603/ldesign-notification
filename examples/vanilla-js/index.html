@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@ldesign/notification - Vanilla JS 示例</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .header p {
+      font-size: 16px;
+      opacity: 0.9;
+    }
+
+    .content {
+      padding: 40px;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+      border-bottom: 2px solid #667eea;
+      padding-bottom: 10px;
+    }
+
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: white;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .btn-success {
+      background: #52c41a;
+    }
+
+    .btn-success:hover {
+      background: #73d13d;
+    }
+
+    .btn-error {
+      background: #ff4d4f;
+    }
+
+    .btn-error:hover {
+      background: #ff7875;
+    }
+
+    .btn-warning {
+      background: #faad14;
+    }
+
+    .btn-warning:hover {
+      background: #ffc53d;
+    }
+
+    .btn-info {
+      background: #1890ff;
+    }
+
+    .btn-info:hover {
+      background: #40a9ff;
+    }
+
+    .btn-default {
+      background: #666;
+    }
+
+    .btn-default:hover {
+      background: #888;
+    }
+
+    .description {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .theme-switcher {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .code-block {
+      background: #f5f5f5;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      margin-top: 10px;
+      overflow-x: auto;
+    }
+
+    .footer {
+      background: #f5f5f5;
+      padding: 30px;
+      text-align: center;
+      color: #666;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🔔 @ldesign/notification</h1>
+      <p>Vanilla JavaScript 示例 - 功能完整的通知系统</p>
+    </div>
+
+    <div class="content">
+      <!-- Toast 示例 -->
+      <div class="section">
+        <h2 class="section-title">Toast 轻提示</h2>
+        <p class="description">简短的消息提示，自动消失</p>
+        <div class="button-group">
+          <button class="btn-success" id="toast-success">Success</button>
+          <button class="btn-error" id="toast-error">Error</button>
+          <button class="btn-warning" id="toast-warning">Warning</button>
+          <button class="btn-info" id="toast-info">Info</button>
+          <button class="btn-default" id="toast-loading">Loading</button>
+          <button class="btn-info" id="toast-promise">Promise</button>
+        </div>
+      </div>
+
+      <!-- 位置示例 -->
+      <div class="section">
+        <h2 class="section-title">Toast 位置</h2>
+        <p class="description">支持 9 个位置选择</p>
+        <div class="button-group">
+          <button class="btn-info" id="pos-top">Top</button>
+          <button class="btn-info" id="pos-top-left">Top Left</button>
+          <button class="btn-info" id="pos-top-right">Top Right</button>
+          <button class="btn-info" id="pos-bottom">Bottom</button>
+          <button class="btn-info" id="pos-bottom-left">Bottom Left</button>
+          <button class="btn-info" id="pos-bottom-right">Bottom Right</button>
+          <button class="btn-info" id="pos-center">Center</button>
+        </div>
+      </div>
+
+      <!-- Message 示例 -->
+      <div class="section">
+        <h2 class="section-title">Message 消息</h2>
+        <p class="description">顶部消息条</p>
+        <div class="button-group">
+          <button class="btn-success" id="message-success">Success</button>
+          <button class="btn-error" id="message-error">Error</button>
+          <button class="btn-warning" id="message-warning">Warning</button>
+          <button class="btn-info" id="message-info">Info</button>
+        </div>
+      </div>
+
+      <!-- Notification 示例 -->
+      <div class="section">
+        <h2 class="section-title">Notification 通知</h2>
+        <p class="description">桌面风格通知</p>
+        <div class="button-group">
+          <button class="btn-success" id="notif-success">Success</button>
+          <button class="btn-error" id="notif-error">Error</button>
+          <button class="btn-warning" id="notif-with-actions">With Actions</button>
+        </div>
+      </div>
+
+      <!-- Alert 示例 -->
+      <div class="section">
+        <h2 class="section-title">Alert 警告框</h2>
+        <p class="description">模态对话框</p>
+        <div class="button-group">
+          <button class="btn-default" id="alert-simple">Simple Alert</button>
+          <button class="btn-warning" id="alert-confirm">Confirm</button>
+          <button class="btn-info" id="alert-prompt">Prompt</button>
+        </div>
+      </div>
+
+      <!-- 主题切换 -->
+      <div class="section">
+        <h2 class="section-title">主题切换</h2>
+        <p class="description">支持 Light / Dark 主题</p>
+        <div class="theme-switcher">
+          <button class="btn-default" id="theme-light">Light</button>
+          <button class="btn-default" id="theme-dark">Dark</button>
+          <button class="btn-default" id="theme-auto">Auto</button>
+        </div>
+      </div>
+
+      <!-- 高级功能 -->
+      <div class="section">
+        <h2 class="section-title">高级功能</h2>
+        <p class="description">浏览器通知、声音、历史记录</p>
+        <div class="button-group">
+          <button class="btn-info" id="browser-notification">浏览器通知</button>
+          <button class="btn-info" id="play-sound">播放声音</button>
+          <button class="btn-info" id="view-history">查看历史</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>Made with ❤️ by LDesign Team</p>
+      <p style="margin-top: 10px; font-size: 14px;">
+        <a href="https://github.com/ldesign/ldesign" target="_blank" style="color: #667eea;">GitHub</a> •
+        <a href="../README.md" style="color: #667eea;">文档</a>
+      </p>
+    </div>
+  </div>
+
+  <script type="module" src="/main.js"></script>
+</body>
+
+</html>

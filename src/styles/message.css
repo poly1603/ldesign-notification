@@ -1,0 +1,76 @@
+/**
+ * Message 样式
+ */
+
+.ldesign-message {
+  composes: ldesign-notification-item;
+  padding: var(--ldn-message-padding);
+  border-radius: var(--ldn-message-radius);
+  box-shadow: var(--ldn-message-shadow);
+  border: none;
+  display: inline-flex;
+  max-width: 500px;
+}
+
+/* Message 容器样式 */
+.ldesign-notification-container--message {
+  align-items: center;
+}
+
+/* Message 变体样式 */
+.ldesign-message--success {
+  background: var(--ldn-color-success-light);
+}
+
+.ldesign-message--success .ldesign-notification-icon {
+  color: var(--ldn-color-success);
+}
+
+.ldesign-message--error {
+  background: var(--ldn-color-error-light);
+}
+
+.ldesign-message--error .ldesign-notification-icon {
+  color: var(--ldn-color-error);
+}
+
+.ldesign-message--warning {
+  background: var(--ldn-color-warning-light);
+}
+
+.ldesign-message--warning .ldesign-notification-icon {
+  color: var(--ldn-color-warning);
+}
+
+.ldesign-message--info {
+  background: var(--ldn-color-info-light);
+}
+
+.ldesign-message--info .ldesign-notification-icon {
+  color: var(--ldn-color-info);
+}
+
+/* Message 内容 */
+.ldesign-message-content {
+  display: flex;
+  align-items: center;
+  gap: var(--ldn-spacing-sm);
+}
+
+.ldesign-message-text {
+  font-size: var(--ldn-font-size-md);
+  color: var(--ldn-color-text);
+}
+
+/* Message 图标 */
+.ldesign-message .ldesign-notification-icon {
+  font-size: 16px;
+}
+
+/* 居中文本 */
+.ldesign-message--center .ldesign-message-text {
+  text-align: center;
+}
+
+
+

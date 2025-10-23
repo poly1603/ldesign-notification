@@ -1,0 +1,84 @@
+/**
+ * Notification 样式
+ */
+
+.ldesign-notification {
+  composes: ldesign-notification-item;
+  padding: var(--ldn-notification-padding);
+  width: var(--ldn-notification-width);
+  border-radius: var(--ldn-notification-radius);
+  box-shadow: var(--ldn-notification-shadow);
+  flex-direction: column;
+  gap: var(--ldn-spacing-sm);
+}
+
+/* Notification 头部 */
+.ldesign-notification-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ldn-spacing-md);
+}
+
+.ldesign-notification-header-content {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Notification 标题 */
+.ldesign-notification-title {
+  font-size: var(--ldn-font-size-lg);
+  font-weight: var(--ldn-font-weight-medium);
+  margin: 0 0 var(--ldn-spacing-xs) 0;
+  color: var(--ldn-color-text);
+}
+
+/* Notification 消息 */
+.ldesign-notification-message {
+  font-size: var(--ldn-font-size-md);
+  line-height: 1.5;
+  color: var(--ldn-color-text);
+  opacity: 0.85;
+}
+
+/* Notification 图标 */
+.ldesign-notification .ldesign-notification-icon {
+  font-size: 24px;
+  margin-top: 2px;
+}
+
+/* Notification 操作按钮 */
+.ldesign-notification-actions {
+  display: flex;
+  gap: var(--ldn-spacing-sm);
+  margin-top: var(--ldn-spacing-md);
+  padding-top: var(--ldn-spacing-md);
+  border-top: 1px solid var(--ldn-color-border);
+}
+
+/* Notification 变体样式 */
+.ldesign-notification--success {
+  border-left: 4px solid var(--ldn-color-success);
+}
+
+.ldesign-notification--error {
+  border-left: 4px solid var(--ldn-color-error);
+}
+
+.ldesign-notification--warning {
+  border-left: 4px solid var(--ldn-color-warning);
+}
+
+.ldesign-notification--info {
+  border-left: 4px solid var(--ldn-color-info);
+}
+
+/* 响应式 */
+@media (max-width: 480px) {
+  .ldesign-notification {
+    width: calc(100vw - 32px);
+    max-width: 384px;
+  }
+}
+
+
+
