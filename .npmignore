@@ -1,0 +1,53 @@
+# 开发文件和目录
+examples/
+src/
+.git
+.github/
+
+# 配置文件
+ldesign.config.ts
+rollup.umd.config.js
+tsconfig.json
+eslint.config.js
+.gitignore
+.eslintrc*
+.prettierrc*
+
+# 文档文件（保留 README.md 和 LICENSE）
+*.md
+!README.md
+!CHANGELOG.md
+PROJECT_OVERVIEW.md
+USAGE_GUIDE.md
+QUICK_START.md
+START_HERE.md
+DOCUMENTATION_INDEX.md
+FILE_MANIFEST.md
+EXAMPLES_COMPLETED.md
+PROJECT_COMPLETED.md
+FINAL_SUMMARY.md
+IMPLEMENTATION_SUMMARY.md
+PROJECT_PLAN.md
+ALL_WORK_COMPLETED.md
+✅_MISSION_ACCOMPLISHED.md
+🎊_ALL_COMPLETED.md
+🎉_PROJECT_SUCCESS.md
+
+# 测试和构建临时文件
+coverage/
+.nyc_output/
+*.log
+*.tmp
+*.temp
+
+# IDE 和编辑器
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 系统文件
+.DS_Store
+Thumbs.db
+

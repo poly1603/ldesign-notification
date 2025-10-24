@@ -2,7 +2,7 @@
  * Vue 3 Plugin
  */
 
-import type { App, Plugin } from 'vue'
+import { createApp, type App, type Plugin } from 'vue'
 import type { NotificationManagerConfig } from '../types'
 import { NotificationManager } from '../core/manager'
 import NotificationContainer from './components/NotificationContainer.vue'
@@ -46,8 +46,6 @@ export const NotificationPlugin: Plugin = {
     if (autoMount) {
       // 在下一个 tick 挂载
       app.runWithContext(() => {
-        import { createApp } from 'vue'
-
         const containerApp = createApp(NotificationContainer)
         const div = document.createElement('div')
         document.body.appendChild(div)

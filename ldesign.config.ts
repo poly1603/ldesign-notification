@@ -3,9 +3,9 @@ import { defineConfig } from '@ldesign/builder'
 export default defineConfig({
   // 强制指定为TypeScript库
   libraryType: 'typescript',
-  
+
   input: 'src/index.ts',
-  
+
   output: {
     format: ['esm', 'cjs', 'umd'],
 
@@ -54,6 +54,13 @@ export default defineConfig({
   typescript: {
     declaration: true,
     declarationMap: true,
+  },
+
+  // UMD构建配置(顶层，确保被识别)
+  umd: {
+    enabled: true,
+    entry: 'src/index-lib.ts',
+    name: 'LDesignNotification',
   },
 })
 

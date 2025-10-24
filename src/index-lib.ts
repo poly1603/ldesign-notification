@@ -1,5 +1,7 @@
-/**
- * @ldesign/notification - 通知系统主入口
+﻿/**
+ * @ldesign/notification - UMD构建专用入口文件
+ * 为浏览器环境提供通知系统核心功能
+ * 不包含Vue/React特定集成
  */
 
 // 导入样式
@@ -56,13 +58,11 @@ export type {
   HistoryItem,
 } from './features'
 
-// 导出默认实例 - 重新导出避免循环依赖
-export { notificationManager as notification, notificationManager as default } from './core/manager'
-
-// 导入单例用于便捷导出
-import { notificationManager } from './core/manager'
+// 导出默认实例
+export const notification = notificationManager
 export const toast = notificationManager.toast
 export const message = notificationManager.message
 export const alert = notificationManager.alert
 
-
+// 默认导出
+export default notificationManager

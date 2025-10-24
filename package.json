@@ -2,30 +2,105 @@
   "name": "@ldesign/notification",
   "version": "0.1.0",
   "description": "LDesign 通知系统 - Toast/Message/Notification/Alert，支持 React/Vue",
-  "keywords": ["ldesign", "notification", "toast", "message", "alert", "vue", "react"],
+  "keywords": [
+    "ldesign",
+    "notification",
+    "toast",
+    "message",
+    "alert",
+    "vue",
+    "react"
+  ],
   "author": "LDesign Team",
   "license": "MIT",
   "type": "module",
-  "main": "./lib/index.cjs",
-  "module": "./es/index.js",
-  "types": "./es/index.d.ts",
   "exports": {
     ".": {
       "types": "./es/index.d.ts",
       "import": "./es/index.js",
       "require": "./lib/index.cjs"
     },
-    "./vue": {
-      "types": "./es/vue/index.d.ts",
-      "import": "./es/vue/index.js",
-      "require": "./lib/vue/index.cjs"
+    "./core/*": {
+      "types": "./es/core/*.d.ts",
+      "import": "./es/core/*.js",
+      "require": "./lib/core/*.cjs"
+    },
+    "./features": {
+      "types": "./es/features/index.d.ts",
+      "import": "./es/features/index.js",
+      "require": "./lib/features/index.cjs"
+    },
+    "./features/*": {
+      "types": "./es/features/*.d.ts",
+      "import": "./es/features/*.js",
+      "require": "./lib/features/*.cjs"
     },
     "./react": {
       "types": "./es/react/index.d.ts",
       "import": "./es/react/index.js",
       "require": "./lib/react/index.cjs"
-    }
+    },
+    "./react/*": {
+      "types": "./es/react/*.d.ts",
+      "import": "./es/react/*.js",
+      "require": "./lib/react/*.cjs"
+    },
+    "./renderers": {
+      "types": "./es/renderers/index.d.ts",
+      "import": "./es/renderers/index.js",
+      "require": "./lib/renderers/index.cjs"
+    },
+    "./renderers/*": {
+      "types": "./es/renderers/*.d.ts",
+      "import": "./es/renderers/*.js",
+      "require": "./lib/renderers/*.cjs"
+    },
+    "./types": {
+      "types": "./es/types/index.d.ts",
+      "import": "./es/types/index.js",
+      "require": "./lib/types/index.cjs"
+    },
+    "./types/*": {
+      "types": "./es/types/*.d.ts",
+      "import": "./es/types/*.js",
+      "require": "./lib/types/*.cjs"
+    },
+    "./utils/*": {
+      "types": "./es/utils/*.d.ts",
+      "import": "./es/utils/*.js",
+      "require": "./lib/utils/*.cjs"
+    },
+    "./vue": {
+      "types": "./es/vue/index.d.ts",
+      "import": "./es/vue/index.js",
+      "require": "./lib/vue/index.cjs"
+    },
+    "./vue/*": {
+      "types": "./es/vue/*.d.ts",
+      "import": "./es/vue/*.js",
+      "require": "./lib/vue/*.cjs"
+    },
+    "./styles": "./es/index.css",
+    "./es/index.css": "./es/index.css",
+    "./es/vue/index.css": "./es/vue/index.css",
+    "./lib/index.css": "./lib/index.css",
+    "./lib/vue/plugin.css": "./lib/vue/plugin.css",
+    "./dist/index.css": "./dist/index.css",
+    "./dist/index.min.css": "./dist/index.min.css"
   },
+  "main": "./lib/index.cjs",
+  "module": "./es/index.js",
+  "types": "./es/index.d.ts",
+  "unpkg": "./dist/index.min.js",
+  "jsdelivr": "./dist/index.min.js",
+  "files": [
+    "README.md",
+    "LICENSE",
+    "package.json",
+    "es",
+    "lib",
+    "dist"
+  ],
   "scripts": {
     "build": "ldesign-builder build",
     "build:watch": "ldesign-builder build --watch",
@@ -37,24 +112,22 @@
   "dependencies": {
     "@ldesign/shared": "workspace:*"
   },
+  "peerDependencies": {
+    "vue": "^3.3.0",
+    "react": "^18.0.0"
+  },
   "devDependencies": {
     "@ldesign/builder": "workspace:*",
     "@antfu/eslint-config": "^6.0.0",
     "eslint": "^9.18.0",
     "typescript": "^5.7.3"
   },
-  "peerDependencies": {
-    "vue": "^3.3.0",
-    "react": "^18.0.0"
-  },
   "peerDependenciesMeta": {
-    "vue": { "optional": true },
-    "react": { "optional": true }
+    "vue": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    }
   }
 }
-
-
-
-
-
-

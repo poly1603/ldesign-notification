@@ -22,12 +22,12 @@
 </template>
 
 <script setup lang="ts">
-import type { NotificationItem, Position } from '../../types'
+import type { NotificationItem as NotificationItemType, Position } from '../../types'
 import { computed } from 'vue'
 import { useNotification } from '../composables/useNotification'
 import ToastItem from './ToastItem.vue'
 import MessageItem from './MessageItem.vue'
-import NotificationItem from './NotificationItem.vue'
+import NotificationItemComponent from './NotificationItem.vue'
 import AlertDialog from './AlertDialog.vue'
 
 const { notifications, dismiss } = useNotification()
@@ -40,7 +40,7 @@ const positions = computed<Position[]>(() => {
 })
 
 // 根据位置获取通知
-function getItemsByPosition(position: Position): NotificationItem[] {
+function getItemsByPosition(position: Position): NotificationItemType[] {
   return notifications.value.filter(item => item.position === position)
 }
 
@@ -61,11 +61,11 @@ function getTransitionName(position: Position): string {
 }
 
 // 根据类型获取组件
-function getComponentForType(type: NotificationItem['type']) {
+function getComponentForType(type: NotificationItemType['type']) {
   const components = {
     toast: ToastItem,
     message: MessageItem,
-    notification: NotificationItem,
+    notification: NotificationItemComponent,
     alert: AlertDialog,
   }
   return components[type]
