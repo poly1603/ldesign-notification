@@ -36,5 +36,15 @@ export type {
   HistoryItem,
 } from './history'
 
+// 通知中心
+export {
+  NotificationCenter,
+} from './notification-center'
+
+export type {
+  NotificationCenterConfig,
+  FilterOptions,
+} from './notification-center'
+
 
 

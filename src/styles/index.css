@@ -17,6 +17,12 @@
 @import './notification.css';
 @import './alert.css';
 
+/* 导入键盘导航样式 */
+@import './keyboard.css';
+
+/* 导入通知中心样式 */
+@import './notification-center.css';
+
 /* 全局重置 */
 .ldesign-notification-item * {
   box-sizing: border-box;
@@ -39,11 +45,9 @@
 
 /* 打印时隐藏通知 */
 @media print {
+
   .ldesign-notification-container,
   .ldesign-alert-overlay {
     display: none !important;
   }
 }
-
-
-

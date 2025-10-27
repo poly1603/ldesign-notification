@@ -1,0 +1,385 @@
+/**
+ * 通知中心样式
+ */
+
+/* 遮罩层 */
+.ldesign-notification-center-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 9998;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.ldesign-notification-center-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 通知中心容器 */
+.ldesign-notification-center {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 400px;
+  max-width: 90vw;
+  background: var(--ldn-color-bg);
+  box-shadow: var(--ldn-shadow-lg);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+}
+
+.ldesign-notification-center--left {
+  left: 0;
+  transform: translateX(-100%);
+}
+
+.ldesign-notification-center--right {
+  right: 0;
+  transform: translateX(100%);
+}
+
+.ldesign-notification-center.visible {
+  transform: translateX(0);
+}
+
+/* 头部 */
+.ldesign-notification-center-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ldn-spacing-lg);
+  border-bottom: 1px solid var(--ldn-color-border);
+  flex-shrink: 0;
+}
+
+.ldesign-notification-center-title {
+  margin: 0;
+  font-size: var(--ldn-font-size-lg);
+  font-weight: var(--ldn-font-weight-bold);
+  color: var(--ldn-color-text);
+}
+
+.ldesign-notification-center-close {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: var(--ldn-color-text);
+  font-size: 24px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.ldesign-notification-center-close:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* 搜索栏 */
+.ldesign-notification-center-search {
+  padding: var(--ldn-spacing-sm) var(--ldn-spacing-lg);
+  border-bottom: 1px solid var(--ldn-color-border);
+  flex-shrink: 0;
+}
+
+.ldesign-notification-center-search-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--ldn-color-border);
+  border-radius: var(--ldn-radius-md);
+  font-size: var(--ldn-font-size-md);
+  background: var(--ldn-color-bg);
+  color: var(--ldn-color-text);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.ldesign-notification-center-search-input:focus {
+  border-color: var(--ldn-color-info);
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.1);
+}
+
+/* 过滤器 */
+.ldesign-notification-center-filters {
+  padding: var(--ldn-spacing-sm) var(--ldn-spacing-lg);
+  border-bottom: 1px solid var(--ldn-color-border);
+  flex-shrink: 0;
+}
+
+.ldesign-notification-center-filter-group {
+  display: flex;
+  gap: var(--ldn-spacing-xs);
+  flex-wrap: wrap;
+}
+
+.ldesign-filter-btn {
+  padding: 4px 12px;
+  border: 1px solid var(--ldn-color-border);
+  border-radius: var(--ldn-radius-md);
+  background: var(--ldn-color-bg);
+  color: var(--ldn-color-text);
+  font-size: var(--ldn-font-size-sm);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ldesign-filter-btn:hover {
+  border-color: var(--ldn-color-info);
+  color: var(--ldn-color-info);
+}
+
+.ldesign-filter-btn.active {
+  background: var(--ldn-color-info);
+  border-color: var(--ldn-color-info);
+  color: white;
+}
+
+/* 通知列表 */
+.ldesign-notification-center-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--ldn-spacing-sm);
+}
+
+/* 自定义滚动条 */
+.ldesign-notification-center-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.ldesign-notification-center-list::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.ldesign-notification-center-list::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.ldesign-notification-center-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* 通知分组 */
+.ldesign-notification-group {
+  margin-bottom: var(--ldn-spacing-md);
+}
+
+.ldesign-notification-group-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ldn-spacing-xs) var(--ldn-spacing-sm);
+  margin-bottom: var(--ldn-spacing-xs);
+}
+
+.ldesign-notification-group-title h4 {
+  margin: 0;
+  font-size: var(--ldn-font-size-md);
+  font-weight: var(--ldn-font-weight-medium);
+  color: var(--ldn-color-text);
+  opacity: 0.6;
+}
+
+.ldesign-toggle-btn {
+  padding: 4px;
+  border: none;
+  background: transparent;
+  color: var(--ldn-color-text);
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.ldesign-toggle-btn:hover {
+  opacity: 1;
+}
+
+/* 通知项 */
+.ldesign-notification-center-item {
+  display: flex;
+  gap: var(--ldn-spacing-sm);
+  padding: var(--ldn-spacing-md);
+  margin-bottom: var(--ldn-spacing-xs);
+  background: var(--ldn-color-bg);
+  border: 1px solid var(--ldn-color-border);
+  border-radius: var(--ldn-radius-md);
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.ldesign-notification-center-item:hover {
+  background: rgba(0, 0, 0, 0.02);
+  box-shadow: var(--ldn-shadow-sm);
+}
+
+.ldesign-notification-center-item.unread {
+  border-left: 3px solid var(--ldn-color-info);
+  background: var(--ldn-color-info-light);
+}
+
+.ldesign-notification-center-item-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.ldesign-notification-center-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--ldn-spacing-xs);
+}
+
+.ldesign-notification-center-item-type {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: var(--ldn-radius-sm);
+  font-size: var(--ldn-font-size-sm);
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--ldn-color-text);
+  opacity: 0.6;
+  text-transform: capitalize;
+}
+
+.ldesign-notification-center-item-time {
+  font-size: var(--ldn-font-size-sm);
+  color: var(--ldn-color-text);
+  opacity: 0.5;
+}
+
+.ldesign-notification-center-item-title {
+  font-weight: var(--ldn-font-weight-medium);
+  font-size: var(--ldn-font-size-md);
+  color: var(--ldn-color-text);
+  margin-bottom: 4px;
+}
+
+.ldesign-notification-center-item-message {
+  font-size: var(--ldn-font-size-sm);
+  color: var(--ldn-color-text);
+  opacity: 0.8;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+.ldesign-notification-center-item-actions {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ldn-spacing-xs);
+}
+
+.ldesign-icon-btn {
+  padding: 4px;
+  border: none;
+  background: transparent;
+  color: var(--ldn-color-text);
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+  font-size: 16px;
+}
+
+.ldesign-icon-btn:hover {
+  opacity: 1;
+}
+
+/* 空状态 */
+.ldesign-notification-center-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ldn-spacing-xl);
+  text-align: center;
+  min-height: 200px;
+}
+
+.ldesign-empty-icon {
+  font-size: 48px;
+  margin-bottom: var(--ldn-spacing-md);
+  opacity: 0.3;
+}
+
+.ldesign-empty-text {
+  color: var(--ldn-color-text);
+  opacity: 0.5;
+  font-size: var(--ldn-font-size-md);
+}
+
+/* 底部操作栏 */
+.ldesign-notification-center-footer {
+  display: flex;
+  gap: var(--ldn-spacing-sm);
+  padding: var(--ldn-spacing-md) var(--ldn-spacing-lg);
+  border-top: 1px solid var(--ldn-color-border);
+  flex-shrink: 0;
+}
+
+.ldesign-btn {
+  flex: 1;
+  padding: 8px 16px;
+  border: 1px solid var(--ldn-color-border);
+  border-radius: var(--ldn-radius-md);
+  background: var(--ldn-color-bg);
+  color: var(--ldn-color-text);
+  font-size: var(--ldn-font-size-md);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ldesign-btn:hover {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: var(--ldn-color-info);
+}
+
+.ldesign-btn-text {
+  border: none;
+  background: transparent;
+}
+
+.ldesign-btn-text:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--ldn-color-info);
+}
+
+/* 深色主题 */
+[data-notification-theme="dark"] .ldesign-notification-center {
+  border-left: 1px solid var(--ldn-color-border);
+}
+
+[data-notification-theme="dark"] .ldesign-notification-center-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+[data-notification-theme="dark"] .ldesign-notification-center-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+[data-notification-theme="dark"] .ldesign-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .ldesign-notification-center {
+    width: 100vw;
+    max-width: 100vw;
+  }
+
+  .ldesign-notification-center-header {
+    padding: var(--ldn-spacing-md);
+  }
+
+  .ldesign-notification-center-list {
+    padding: var(--ldn-spacing-xs);
+  }
+}

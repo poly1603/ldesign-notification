@@ -80,11 +80,8 @@
       "import": "./es/vue/*.js",
       "require": "./lib/vue/*.cjs"
     },
-    "./styles": "./es/index.css",
     "./es/index.css": "./es/index.css",
-    "./es/vue/index.css": "./es/vue/index.css",
     "./lib/index.css": "./lib/index.css",
-    "./lib/vue/plugin.css": "./lib/vue/plugin.css",
     "./dist/index.css": "./dist/index.css",
     "./dist/index.min.css": "./dist/index.min.css"
   },
@@ -107,7 +104,13 @@
     "dev": "ldesign-builder build --mode development --watch",
     "clean": "rimraf es lib dist coverage",
     "prepublishOnly": "pnpm run clean && pnpm run build",
-    "lint": "eslint . --fix"
+    "lint": "eslint . --fix",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:watch": "vitest --watch",
+    "bench": "vitest bench"
   },
   "dependencies": {
     "@ldesign/shared": "workspace:*"
@@ -120,7 +123,12 @@
     "@ldesign/builder": "workspace:*",
     "@antfu/eslint-config": "^6.0.0",
     "eslint": "^9.18.0",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "vitest": "^1.0.0",
+    "@vitest/ui": "^1.0.0",
+    "@vitest/coverage-v8": "^1.0.0",
+    "jsdom": "^23.0.0",
+    "happy-dom": "^12.0.0"
   },
   "peerDependenciesMeta": {
     "vue": {

@@ -14,6 +14,10 @@ export { NotificationQueue } from './core/queue'
 export { PositionManager } from './core/position'
 export { AnimationEngine } from './core/animation'
 export { StackManager } from './core/stack'
+export { KeyboardManager } from './core/keyboard'
+export { DOMPool, domPool } from './core/dom-pool'
+export { VirtualScroller } from './core/virtual-scroller'
+export type { VirtualScrollerConfig } from './core/virtual-scroller'
 
 // 导出渲染器
 export {
