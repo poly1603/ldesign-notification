@@ -1,0 +1,380 @@
+/**
+ * Notification 样式
+ * @description 现代化 Notification 通知样式，支持流畅动画和响应式设计
+ */
+
+.l-notification-container {
+  pointer-events: none;
+}
+
+.l-notification-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  /* 确保有最小高度，避免最后一个离开时容器高度突变 */
+  min-height: 1px;
+}
+
+/* 包装器 - 用于动画过渡，是 TransitionGroup 的直接子元素 */
+.l-notification-wrapper {
+  /* 使用 block 布局，让高度由内容决定 */
+  display: block;
+  /* 添加 will-change 优化动画性能 */
+  will-change: transform, opacity;
+}
+
+.l-notification {
+  display: flex;
+  flex-direction: column;
+  width: 360px;
+  background: var(--l-notification-bg);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.12),
+    0 4px 8px -4px rgba(0, 0, 0, 0.08);
+  pointer-events: auto;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  /* 使用 will-change 优化动画性能 */
+  will-change: transform, opacity;
+  /* 确保元素有正确的盒模型 */
+  box-sizing: border-box;
+}
+
+/* 类型样式 - 左侧彩色边条 */
+.l-notification--success {
+  border-left: 4px solid var(--l-notification-success);
+}
+
+.l-notification--error {
+  border-left: 4px solid var(--l-notification-error);
+}
+
+.l-notification--warning {
+  border-left: 4px solid var(--l-notification-warning);
+}
+
+.l-notification--info {
+  border-left: 4px solid var(--l-notification-info);
+}
+
+.l-notification--loading {
+  border-left: 4px solid var(--l-notification-info);
+}
+
+/* 头部区域 */
+.l-notification__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  padding-bottom: 8px;
+}
+
+/* 图标样式 */
+.l-notification__icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.l-notification__icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.l-notification--success .l-notification__icon {
+  color: var(--l-notification-success);
+}
+
+.l-notification--error .l-notification__icon {
+  color: var(--l-notification-error);
+}
+
+.l-notification--warning .l-notification__icon {
+  color: var(--l-notification-warning);
+}
+
+.l-notification--info .l-notification__icon,
+.l-notification--loading .l-notification__icon {
+  color: var(--l-notification-info);
+}
+
+/* Loading 旋转动画 */
+.l-notification__icon--spin {
+  animation: l-notification-spin 1s linear infinite;
+}
+
+@keyframes l-notification-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 标题 */
+.l-notification__title {
+  flex: 1;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--l-notification-text);
+  line-height: 1.5;
+}
+
+/* 关闭按钮 */
+.l-notification__close {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--l-notification-text-secondary);
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  opacity: 0.6;
+  margin: -4px -4px 0 0;
+}
+
+.l-notification__close:hover {
+  background: rgba(0, 0, 0, 0.08);
+  color: var(--l-notification-text);
+  opacity: 1;
+}
+
+.l-notification__close:active {
+  transform: scale(0.92);
+}
+
+/* 内容区域 */
+.l-notification__content {
+  padding: 0 16px 16px;
+  font-size: 14px;
+  color: var(--l-notification-text-secondary);
+  line-height: 1.6;
+}
+
+/* 操作按钮区域 */
+.l-notification__actions {
+  display: flex;
+  gap: 8px;
+  padding: 0 16px 16px;
+}
+
+.l-notification__action {
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.l-notification__action--primary {
+  background: var(--l-notification-primary);
+  color: #fff;
+  border: none;
+}
+
+.l-notification__action--primary:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.l-notification__action--secondary {
+  background: transparent;
+  color: var(--l-notification-text);
+  border: 1px solid var(--l-notification-border);
+}
+
+.l-notification__action--secondary:hover {
+  border-color: var(--l-notification-primary);
+  color: var(--l-notification-primary);
+}
+
+.l-notification__action--danger {
+  background: var(--l-notification-error);
+  color: #fff;
+  border: none;
+}
+
+.l-notification__action--danger:hover {
+  opacity: 0.85;
+}
+
+.l-notification__action:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* 进度条 */
+.l-notification__progress {
+  height: 3px;
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.l-notification__progress-bar {
+  height: 100%;
+  background: var(--l-notification-primary);
+  transition: width 0.05s linear;
+}
+
+/* ==================== 动画 ==================== */
+
+/*
+ * 动画方案：
+ * 1. 进入：从右侧滑入 + 淡入
+ * 2. 离开：淡出 + 向右滑出 + 高度收缩（通过 JS 钩子实现）
+ * 3. 移动：其他元素通过 TransitionGroup 的 FLIP 动画自动平滑移动
+ */
+
+/* 从右侧滑入动画 */
+.l-notification-right-enter-active {
+  transition:
+    opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.l-notification-right-leave-active {
+  transition:
+    opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    margin 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    padding 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.l-notification-right-enter-from {
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+.l-notification-right-leave-to {
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+/* 移动动画 */
+.l-notification-right-move {
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 从左侧滑入动画 */
+.l-notification-left-enter-active {
+  transition:
+    opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.l-notification-left-leave-active {
+  transition:
+    opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    margin 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    padding 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.l-notification-left-enter-from {
+  opacity: 0;
+  transform: translateX(-50px);
+}
+
+.l-notification-left-leave-to {
+  opacity: 0;
+  transform: translateX(-50px);
+}
+
+.l-notification-left-move {
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 兼容旧动画名（默认右侧） */
+.l-notification-enter-active {
+  transition:
+    opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.l-notification-leave-active {
+  transition:
+    opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    margin 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    padding 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.l-notification-enter-from {
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+.l-notification-leave-to {
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+.l-notification-move {
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==================== 响应式设计 ==================== */
+
+/* 平板设备 */
+@media (max-width: 1024px) {
+  .l-notification {
+    width: 320px;
+  }
+}
+
+/* 手机设备 */
+@media (max-width: 640px) {
+  .l-notification {
+    width: calc(100vw - 48px);
+    max-width: 320px;
+    border-radius: 10px;
+  }
+
+  .l-notification__header {
+    padding: 14px;
+    padding-bottom: 6px;
+  }
+
+  .l-notification__icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .l-notification__title {
+    font-size: 14px;
+  }
+
+  .l-notification__content {
+    padding: 0 14px 14px;
+    font-size: 13px;
+  }
+
+  .l-notification__actions {
+    padding: 0 14px 14px;
+  }
+
+  .l-notification__action {
+    padding: 5px 12px;
+    font-size: 12px;
+  }
+}

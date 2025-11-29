@@ -1,0 +1,290 @@
+/**
+ * Drawer 样式
+ * @description 现代化 Drawer 抽屉样式，支持四个方向滑入滑出、拖动调整大小
+ */
+
+.l-drawer-wrapper {
+  position: fixed;
+  inset: 0;
+}
+
+.l-drawer__mask {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.l-drawer {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  background: var(--l-notification-bg);
+  box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.2),
+    0 4px 16px -4px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  will-change: transform;
+}
+
+.l-drawer--resizable {
+  /* 可调整大小状态 */
+}
+
+.l-drawer--resizing {
+  user-select: none;
+}
+
+/* 方向定位 */
+.l-drawer--left {
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.l-drawer--right {
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.l-drawer--top {
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.l-drawer--bottom {
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+/* 调整大小手柄 */
+.l-drawer__resize-handle {
+  position: absolute;
+  background: transparent;
+  z-index: 10;
+  transition: background 0.2s ease;
+}
+
+.l-drawer__resize-handle:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.l-drawer__resize-handle--left {
+  top: 0;
+  right: 0;
+  width: 6px;
+  height: 100%;
+  cursor: ew-resize;
+}
+
+.l-drawer__resize-handle--right {
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 100%;
+  cursor: ew-resize;
+}
+
+.l-drawer__resize-handle--top {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  cursor: ns-resize;
+}
+
+.l-drawer__resize-handle--bottom {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  cursor: ns-resize;
+}
+
+/* 头部区域 */
+.l-drawer__header {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--l-notification-border);
+  flex-shrink: 0;
+}
+
+.l-drawer__title {
+  flex: 1;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--l-notification-text);
+  line-height: 1.4;
+}
+
+.l-drawer__close {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--l-notification-text-secondary);
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  opacity: 0.7;
+}
+
+.l-drawer__close:hover {
+  background: rgba(0, 0, 0, 0.08);
+  color: var(--l-notification-text);
+  opacity: 1;
+}
+
+.l-drawer__close:active {
+  transform: scale(0.92);
+}
+
+/* 内容区域 */
+.l-drawer__body {
+  flex: 1;
+  padding: 20px;
+  overflow: auto;
+  font-size: 14px;
+  color: var(--l-notification-text);
+  line-height: 1.6;
+}
+
+/* 底部区域 */
+.l-drawer__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 20px;
+  border-top: 1px solid var(--l-notification-border);
+  flex-shrink: 0;
+}
+
+/* ==================== 遮罩动画 ==================== */
+.l-drawer-mask-enter-active {
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.l-drawer-mask-leave-active {
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.l-drawer-mask-enter-from,
+.l-drawer-mask-leave-to {
+  opacity: 0;
+}
+
+/* ==================== 方向动画 ==================== */
+
+/* 左侧抽屉动画 */
+.l-drawer-left-enter-active {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.l-drawer-left-leave-active {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.l-drawer-left-enter-from,
+.l-drawer-left-leave-to {
+  transform: translateX(-100%);
+}
+
+/* 右侧抽屉动画 */
+.l-drawer-right-enter-active {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.l-drawer-right-leave-active {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.l-drawer-right-enter-from,
+.l-drawer-right-leave-to {
+  transform: translateX(100%);
+}
+
+/* 顶部抽屉动画 */
+.l-drawer-top-enter-active {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.l-drawer-top-leave-active {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.l-drawer-top-enter-from,
+.l-drawer-top-leave-to {
+  transform: translateY(-100%);
+}
+
+/* 底部抽屉动画 */
+.l-drawer-bottom-enter-active {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.l-drawer-bottom-leave-active {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.l-drawer-bottom-enter-from,
+.l-drawer-bottom-leave-to {
+  transform: translateY(100%);
+}
+
+/* ==================== 响应式设计 ==================== */
+
+/* 平板设备 */
+@media (max-width: 1024px) {
+
+  .l-drawer--left,
+  .l-drawer--right {
+    max-width: 80vw;
+  }
+
+  .l-drawer--top,
+  .l-drawer--bottom {
+    max-height: 60vh;
+  }
+}
+
+/* 手机设备 */
+@media (max-width: 640px) {
+
+  .l-drawer--left,
+  .l-drawer--right {
+    max-width: 90vw;
+  }
+
+  .l-drawer--top,
+  .l-drawer--bottom {
+    max-height: 70vh;
+  }
+
+  .l-drawer__header {
+    padding: 14px 16px;
+  }
+
+  .l-drawer__title {
+    font-size: 15px;
+  }
+
+  .l-drawer__body {
+    padding: 16px;
+  }
+
+  .l-drawer__footer {
+    padding: 14px 16px;
+  }
+
+  /* 手机端隐藏调整大小手柄 */
+  .l-drawer__resize-handle {
+    display: none;
+  }
+}
