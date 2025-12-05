@@ -11,7 +11,7 @@
 .l-toast-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--l-notification-gap);
 }
 
 /* Toast 包装器 - 让每个 toast 独立居中 */
@@ -22,16 +22,16 @@
 .l-toast {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 12px 20px;
+  gap: var(--size-space-xs);
+  padding: var(--size-space-sm) var(--size-space-lg);
   min-width: auto;
-  max-width: 300px;
-  background: rgba(0, 0, 0, 0.8);
-  border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  max-width: var(--l-notification-width);
+  background: var(--color-bg-mask);
+  border-radius: var(--size-radius-md);
+  box-shadow: 0 var(--size-space-xxs) var(--size-space-lg) var(--color-shadow-small);
   pointer-events: auto;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(var(--size-space-xs));
+  -webkit-backdrop-filter: blur(var(--size-space-xs));
 }
 
 /* 默认类型 - 统一深色背景，图标用白色 */
@@ -40,46 +40,46 @@
 .l-toast--warning,
 .l-toast--info,
 .l-toast--loading {
-  background: rgba(0, 0, 0, 0.8);
+  background: var(--color-bg-mask);
 }
 
 /* 图标样式 - 白色图标 */
 .l-toast__icon {
   flex-shrink: 0;
-  width: 20px;
-  height: 20px;
+  width: var(--size-icon-md);
+  height: var(--size-icon-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: var(--color-text-inverse);
 }
 
 .l-toast__icon svg {
-  width: 18px;
-  height: 18px;
+  width: var(--size-icon-sm);
+  height: var(--size-icon-sm);
 }
 
 /* 不同类型可以有微妙的图标颜色区分 */
 .l-toast--success .l-toast__icon {
-  color: #52c41a;
+  color: var(--color-success);
 }
 
 .l-toast--error .l-toast__icon {
-  color: #ff4d4f;
+  color: var(--color-danger);
 }
 
 .l-toast--warning .l-toast__icon {
-  color: #faad14;
+  color: var(--color-warning);
 }
 
 .l-toast--info .l-toast__icon,
 .l-toast--loading .l-toast__icon {
-  color: #fff;
+  color: var(--color-text-inverse);
 }
 
 /* Loading 旋转动画 */
 .l-toast__icon--spin {
-  animation: l-toast-spin 0.8s linear infinite;
+  animation: l-toast-spin var(--size-duration-normal) linear infinite;
 }
 
 @keyframes l-toast-spin {
@@ -100,39 +100,39 @@
 }
 
 .l-toast__title {
-  font-weight: 500;
-  font-size: 14px;
-  color: #fff;
-  margin-bottom: 2px;
-  line-height: 1.4;
+  font-weight: var(--size-font-weight-medium);
+  font-size: var(--size-font-md);
+  color: var(--color-text-inverse);
+  margin-bottom: var(--size-space-xxs);
+  line-height: var(--size-line-tight);
 }
 
 .l-toast__message {
-  font-size: 14px;
-  color: #fff;
+  font-size: var(--size-font-md);
+  color: var(--color-text-inverse);
   word-break: break-word;
-  line-height: 1.5;
+  line-height: var(--size-line-normal);
 }
 
 /* 关闭按钮 */
 .l-toast__close {
   flex-shrink: 0;
-  width: 20px;
-  height: 20px;
+  width: var(--size-icon-md);
+  height: var(--size-icon-md);
   display: flex;
   align-items: center;
   justify-content: center;
   background: transparent;
   border: none;
   cursor: pointer;
-  color: rgba(255, 255, 255, 0.6);
-  border-radius: 4px;
-  transition: all 0.2s ease;
+  color: var(--color-text-tertiary);
+  border-radius: var(--size-radius-xs);
+  transition: all var(--size-duration-fast) ease;
 }
 
 .l-toast__close:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  background: var(--color-bg-hover);
+  color: var(--color-text-inverse);
 }
 
 .l-toast__close:active {
@@ -144,11 +144,11 @@
 
 /* 从顶部滑入动画 */
 .l-toast-top-enter-active {
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: all var(--size-duration-fast) cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .l-toast-top-leave-active {
-  transition: all 0.25s cubic-bezier(0.4, 0, 1, 1);
+  transition: all var(--size-duration-fast) cubic-bezier(0.4, 0, 1, 1);
   position: absolute;
   left: 0;
   right: 0;
@@ -156,26 +156,26 @@
 
 .l-toast-top-enter-from {
   opacity: 0;
-  transform: translateY(-20px);
+  transform: translateY(calc(-1 * var(--size-space-lg)));
 }
 
 .l-toast-top-leave-to {
   opacity: 0;
-  transform: translateY(-15px);
+  transform: translateY(calc(-1 * var(--size-space-md)));
 }
 
 /* 其他元素平滑移动 */
 .l-toast-top-move {
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--size-duration-fast) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* 从底部滑入动画 */
 .l-toast-bottom-enter-active {
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: all var(--size-duration-fast) cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .l-toast-bottom-leave-active {
-  transition: all 0.25s cubic-bezier(0.4, 0, 1, 1);
+  transition: all var(--size-duration-fast) cubic-bezier(0.4, 0, 1, 1);
   position: absolute;
   left: 0;
   right: 0;
@@ -183,26 +183,26 @@
 
 .l-toast-bottom-enter-from {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(var(--size-space-lg));
 }
 
 .l-toast-bottom-leave-to {
   opacity: 0;
-  transform: translateY(15px);
+  transform: translateY(var(--size-space-md));
 }
 
 /* 其他元素平滑移动 */
 .l-toast-bottom-move {
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--size-duration-fast) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* 兼容旧动画名 */
 .l-toast-enter-active {
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: all var(--size-duration-fast) cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .l-toast-leave-active {
-  transition: all 0.25s cubic-bezier(0.4, 0, 1, 1);
+  transition: all var(--size-duration-fast) cubic-bezier(0.4, 0, 1, 1);
   position: absolute;
   left: 0;
   right: 0;
@@ -210,16 +210,16 @@
 
 .l-toast-enter-from {
   opacity: 0;
-  transform: translateY(-20px);
+  transform: translateY(calc(-1 * var(--size-space-lg)));
 }
 
 .l-toast-leave-to {
   opacity: 0;
-  transform: translateY(-15px);
+  transform: translateY(calc(-1 * var(--size-space-md)));
 }
 
 .l-toast-move {
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--size-duration-fast) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ==================== 响应式设计 ==================== */
@@ -227,20 +227,20 @@
 /* 平板/手机 - Toast 本身就是为移动端设计的 */
 @media (max-width: 640px) {
   .l-toast {
-    max-width: calc(100vw - 60px);
-    padding: 10px 16px;
+    max-width: calc(100vw - var(--size-size-8));
+    padding: var(--size-space-xs) var(--size-space-md);
   }
 
   .l-toast__icon svg {
-    width: 16px;
-    height: 16px;
+    width: var(--size-space-md);
+    height: var(--size-space-md);
   }
 
   .l-toast__message {
-    font-size: 13px;
+    font-size: var(--size-font-sm);
   }
 
   .l-toast__title {
-    font-size: 13px;
+    font-size: var(--size-font-sm);
   }
 }

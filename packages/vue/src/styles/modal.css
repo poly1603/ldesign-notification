@@ -9,13 +9,13 @@
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: 80px 16px;
+  padding: var(--size-size-8) var(--size-space-md);
   overflow: auto;
 }
 
 .l-modal-wrapper--centered {
   align-items: center;
-  padding: 16px;
+  padding: var(--size-space-md);
 }
 
 .l-modal-wrapper--maximized {
@@ -25,31 +25,31 @@
 .l-modal__mask {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
+  background: var(--color-bg-mask);
+  backdrop-filter: blur(var(--size-space-xxs));
+  -webkit-backdrop-filter: blur(var(--size-space-xxs));
 }
 
 .l-modal {
   position: relative;
-  width: 520px;
+  width: var(--l-notification-modal-width);
   max-width: 100%;
-  max-height: calc(100vh - 100px);
+  max-height: calc(100vh - var(--size-size-8));
   display: flex;
   flex-direction: column;
   background: var(--l-notification-bg);
-  border-radius: 12px;
-  box-shadow: 0 12px 40px -8px rgba(0, 0, 0, 0.2),
-    0 6px 16px -8px rgba(0, 0, 0, 0.12);
+  border-radius: var(--size-radius-lg);
+  box-shadow: 0 var(--size-space-sm) var(--size-size-5) calc(-1 * var(--size-space-xs)) var(--color-shadow-large),
+    0 var(--size-space-xs) var(--size-space-md) calc(-1 * var(--size-space-xs)) var(--color-shadow-medium);
   overflow: hidden;
   will-change: transform, opacity;
-  transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    left 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    border-radius 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: top var(--size-duration-fast) cubic-bezier(0.4, 0, 0.2, 1),
+    left var(--size-duration-fast) cubic-bezier(0.4, 0, 0.2, 1),
+    width var(--size-duration-fast) cubic-bezier(0.4, 0, 0.2, 1),
+    height var(--size-duration-fast) cubic-bezier(0.4, 0, 0.2, 1),
+    max-width var(--size-duration-fast) cubic-bezier(0.4, 0, 0.2, 1),
+    max-height var(--size-duration-fast) cubic-bezier(0.4, 0, 0.2, 1),
+    border-radius var(--size-duration-fast) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .l-modal--loading {
@@ -87,8 +87,8 @@
 .l-modal__header {
   display: flex;
   align-items: center;
-  padding: 16px 20px;
-  border-bottom: 1px solid var(--l-notification-border);
+  padding: var(--size-space-md) var(--size-space-lg);
+  border-bottom: var(--size-border-width-thin) solid var(--l-notification-border);
   flex-shrink: 0;
 }
 
@@ -102,22 +102,22 @@
 
 .l-modal__title {
   flex: 1;
-  font-weight: 600;
-  font-size: 16px;
+  font-weight: var(--size-font-weight-semibold);
+  font-size: var(--size-font-lg);
   color: var(--l-notification-text);
-  line-height: 1.4;
+  line-height: var(--size-line-tight);
 }
 
 .l-modal__header-actions {
   display: flex;
   align-items: center;
-  gap: 4px;
-  margin-left: 12px;
+  gap: var(--size-space-xxs);
+  margin-left: var(--size-space-sm);
 }
 
 .l-modal__action-btn {
-  width: 28px;
-  height: 28px;
+  width: var(--size-icon-lg);
+  height: var(--size-icon-lg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -125,20 +125,20 @@
   border: none;
   cursor: pointer;
   color: var(--l-notification-text-secondary);
-  border-radius: 6px;
-  transition: all 0.2s ease;
+  border-radius: var(--size-radius-sm);
+  transition: all var(--size-duration-fast) ease;
   opacity: 0.7;
 }
 
 .l-modal__action-btn:hover {
-  background: rgba(0, 0, 0, 0.08);
+  background: var(--color-bg-hover);
   color: var(--l-notification-text);
   opacity: 1;
 }
 
 .l-modal__close {
-  width: 28px;
-  height: 28px;
+  width: var(--size-icon-lg);
+  height: var(--size-icon-lg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -146,13 +146,13 @@
   border: none;
   cursor: pointer;
   color: var(--l-notification-text-secondary);
-  border-radius: 6px;
-  transition: all 0.2s ease;
+  border-radius: var(--size-radius-sm);
+  transition: all var(--size-duration-fast) ease;
   opacity: 0.7;
 }
 
 .l-modal__close:hover {
-  background: rgba(0, 0, 0, 0.08);
+  background: var(--color-bg-hover);
   color: var(--l-notification-text);
   opacity: 1;
 }
@@ -163,10 +163,10 @@
 
 /* 内容区域 */
 .l-modal__body {
-  padding: 20px;
-  font-size: 14px;
+  padding: var(--size-space-lg);
+  font-size: var(--size-font-md);
   color: var(--l-notification-text);
-  line-height: 1.6;
+  line-height: var(--size-line-relaxed);
   flex: 1;
   overflow: auto;
 }
@@ -175,9 +175,9 @@
 .l-modal__footer {
   display: flex;
   justify-content: flex-end;
-  gap: 10px;
-  padding: 16px 20px;
-  border-top: 1px solid var(--l-notification-border);
+  gap: var(--size-space-xs);
+  padding: var(--size-space-md) var(--size-space-lg);
+  border-top: var(--size-border-width-thin) solid var(--l-notification-border);
   flex-shrink: 0;
 }
 
@@ -186,15 +186,15 @@
   position: absolute;
   right: 0;
   bottom: 0;
-  width: 16px;
-  height: 16px;
+  width: var(--size-space-md);
+  height: var(--size-space-md);
   cursor: se-resize;
-  background: linear-gradient(135deg, transparent 50%, rgba(0, 0, 0, 0.1) 50%);
-  border-radius: 0 0 12px 0;
+  background: linear-gradient(135deg, transparent 50%, var(--color-border) 50%);
+  border-radius: 0 0 var(--size-radius-lg) 0;
 }
 
 .l-modal__resize-handle:hover {
-  background: linear-gradient(135deg, transparent 50%, rgba(0, 0, 0, 0.2) 50%);
+  background: linear-gradient(135deg, transparent 50%, var(--color-text-tertiary) 50%);
 }
 
 /* 按钮样式 */
@@ -202,14 +202,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 34px;
-  padding: 0 18px;
-  font-size: 14px;
-  font-weight: 500;
-  border-radius: 6px;
+  height: var(--size-comp-height-m);
+  padding: 0 var(--size-comp-paddingLR-m);
+  font-size: var(--size-font-md);
+  font-weight: var(--size-font-weight-medium);
+  border-radius: var(--size-radius-sm);
   cursor: pointer;
-  transition: all 0.2s ease;
-  border: 1px solid transparent;
+  transition: all var(--size-duration-fast) ease;
+  border: var(--size-border-width-thin) solid transparent;
   outline: none;
 }
 
@@ -232,18 +232,18 @@
 .l-modal__btn--primary {
   background: var(--l-notification-primary);
   border-color: var(--l-notification-primary);
-  color: #fff;
+  color: var(--color-text-inverse);
 }
 
 .l-modal__btn--primary:hover:not(:disabled) {
   opacity: 0.85;
-  transform: translateY(-1px);
+  transform: translateY(calc(-1 * var(--size-border-width-thin)));
 }
 
 .l-modal__btn--danger {
   background: var(--l-notification-error);
   border-color: var(--l-notification-error);
-  color: #fff;
+  color: var(--color-text-inverse);
 }
 
 .l-modal__btn--danger:hover:not(:disabled) {
@@ -253,7 +253,7 @@
 /* ==================== 遮罩动画 ==================== */
 .l-modal-mask-enter-active,
 .l-modal-mask-leave-active {
-  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity var(--size-duration-fast) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .l-modal-mask-enter-from,
@@ -266,7 +266,7 @@
 /* Fade 淡入淡出 */
 .l-modal-fade-enter-active,
 .l-modal-fade-leave-active {
-  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity var(--size-duration-fast) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .l-modal-fade-enter-from,
@@ -277,7 +277,7 @@
 /* Scale 缩放 */
 .l-modal-scale-enter-active,
 .l-modal-scale-leave-active {
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--size-duration-fast) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .l-modal-scale-enter-from {
@@ -293,7 +293,7 @@
 /* Zoom 缩放（更强烈） */
 .l-modal-zoom-enter-active,
 .l-modal-zoom-leave-active {
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: all var(--size-duration-fast) cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .l-modal-zoom-enter-from {
@@ -309,74 +309,74 @@
 /* Slide Top 从顶部滑入 */
 .l-modal-slide-top-enter-active,
 .l-modal-slide-top-leave-active {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--size-duration-fast) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .l-modal-slide-top-enter-from {
   opacity: 0;
-  transform: translateY(-60px);
+  transform: translateY(calc(-1 * var(--size-size-8)));
 }
 
 .l-modal-slide-top-leave-to {
   opacity: 0;
-  transform: translateY(-40px);
+  transform: translateY(calc(-1 * var(--size-size-5)));
 }
 
 /* Slide Bottom 从底部滑入 */
 .l-modal-slide-bottom-enter-active,
 .l-modal-slide-bottom-leave-active {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--size-duration-fast) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .l-modal-slide-bottom-enter-from {
   opacity: 0;
-  transform: translateY(60px);
+  transform: translateY(var(--size-size-8));
 }
 
 .l-modal-slide-bottom-leave-to {
   opacity: 0;
-  transform: translateY(40px);
+  transform: translateY(var(--size-size-5));
 }
 
 /* Slide Left 从左侧滑入 */
 .l-modal-slide-left-enter-active,
 .l-modal-slide-left-leave-active {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--size-duration-fast) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .l-modal-slide-left-enter-from {
   opacity: 0;
-  transform: translateX(-60px);
+  transform: translateX(calc(-1 * var(--size-size-8)));
 }
 
 .l-modal-slide-left-leave-to {
   opacity: 0;
-  transform: translateX(-40px);
+  transform: translateX(calc(-1 * var(--size-size-5)));
 }
 
 /* Slide Right 从右侧滑入 */
 .l-modal-slide-right-enter-active,
 .l-modal-slide-right-leave-active {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--size-duration-fast) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .l-modal-slide-right-enter-from {
   opacity: 0;
-  transform: translateX(60px);
+  transform: translateX(var(--size-size-8));
 }
 
 .l-modal-slide-right-leave-to {
   opacity: 0;
-  transform: translateX(40px);
+  transform: translateX(var(--size-size-5));
 }
 
 /* Bounce 弹跳 */
 .l-modal-bounce-enter-active {
-  animation: l-modal-bounce-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: l-modal-bounce-in var(--size-duration-normal) cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .l-modal-bounce-leave-active {
-  animation: l-modal-bounce-out 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: l-modal-bounce-out var(--size-duration-fast) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @keyframes l-modal-bounce-in {
@@ -414,7 +414,7 @@
 /* 兼容旧动画名 */
 .l-modal-content-enter-active,
 .l-modal-content-leave-active {
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--size-duration-fast) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .l-modal-content-enter-from {
@@ -430,7 +430,7 @@
 /* 整体动画 */
 .l-modal-enter-active,
 .l-modal-leave-active {
-  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity var(--size-duration-fast) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .l-modal-enter-from,
@@ -443,41 +443,41 @@
 /* 平板设备 */
 @media (max-width: 1024px) {
   .l-modal {
-    max-width: calc(100vw - 48px);
+    max-width: calc(100vw - var(--size-size-8));
   }
 }
 
 /* 手机设备 */
 @media (max-width: 640px) {
   .l-modal-wrapper {
-    padding: 40px 16px;
+    padding: var(--size-size-5) var(--size-space-md);
   }
 
   .l-modal {
     width: 100%;
-    max-width: calc(100vw - 32px);
-    border-radius: 10px;
+    max-width: calc(100vw - var(--size-size-4));
+    border-radius: var(--size-radius-md);
   }
 
   .l-modal__header {
-    padding: 14px 16px;
+    padding: var(--size-space-sm) var(--size-space-md);
   }
 
   .l-modal__title {
-    font-size: 15px;
+    font-size: var(--size-font-md);
   }
 
   .l-modal__body {
-    padding: 16px;
+    padding: var(--size-space-md);
   }
 
   .l-modal__footer {
-    padding: 14px 16px;
+    padding: var(--size-space-sm) var(--size-space-md);
   }
 
   .l-modal__btn {
-    height: 32px;
-    padding: 0 14px;
-    font-size: 13px;
+    height: var(--size-comp-height-s);
+    padding: 0 var(--size-comp-paddingLR-s);
+    font-size: var(--size-font-sm);
   }
 }

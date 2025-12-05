@@ -11,9 +11,9 @@
 .l-drawer__mask {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
+  background: var(--color-bg-mask);
+  backdrop-filter: blur(var(--size-space-xxs));
+  -webkit-backdrop-filter: blur(var(--size-space-xxs));
 }
 
 .l-drawer {
@@ -21,8 +21,8 @@
   display: flex;
   flex-direction: column;
   background: var(--l-notification-bg);
-  box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.2),
-    0 4px 16px -4px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 var(--size-space-xs) var(--size-size-4) calc(-1 * var(--size-space-xs)) var(--color-shadow-large),
+    0 var(--size-space-xxs) var(--size-space-md) calc(-1 * var(--size-space-xxs)) var(--color-shadow-medium);
   overflow: hidden;
   will-change: transform;
 }
@@ -65,17 +65,17 @@
   position: absolute;
   background: transparent;
   z-index: 10;
-  transition: background 0.2s ease;
+  transition: background var(--size-duration-fast) ease;
 }
 
 .l-drawer__resize-handle:hover {
-  background: rgba(0, 0, 0, 0.08);
+  background: var(--color-bg-hover);
 }
 
 .l-drawer__resize-handle--left {
   top: 0;
   right: 0;
-  width: 6px;
+  width: var(--size-space-xs);
   height: 100%;
   cursor: ew-resize;
 }
@@ -83,7 +83,7 @@
 .l-drawer__resize-handle--right {
   top: 0;
   left: 0;
-  width: 6px;
+  width: var(--size-space-xs);
   height: 100%;
   cursor: ew-resize;
 }
@@ -92,7 +92,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 6px;
+  height: var(--size-space-xs);
   cursor: ns-resize;
 }
 
@@ -100,7 +100,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 6px;
+  height: var(--size-space-xs);
   cursor: ns-resize;
 }
 
@@ -108,22 +108,22 @@
 .l-drawer__header {
   display: flex;
   align-items: center;
-  padding: 16px 20px;
-  border-bottom: 1px solid var(--l-notification-border);
+  padding: var(--size-space-md) var(--size-space-lg);
+  border-bottom: var(--size-border-width-thin) solid var(--l-notification-border);
   flex-shrink: 0;
 }
 
 .l-drawer__title {
   flex: 1;
-  font-weight: 600;
-  font-size: 16px;
+  font-weight: var(--size-font-weight-semibold);
+  font-size: var(--size-font-lg);
   color: var(--l-notification-text);
-  line-height: 1.4;
+  line-height: var(--size-line-tight);
 }
 
 .l-drawer__close {
-  width: 28px;
-  height: 28px;
+  width: var(--size-icon-lg);
+  height: var(--size-icon-lg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -131,13 +131,13 @@
   border: none;
   cursor: pointer;
   color: var(--l-notification-text-secondary);
-  border-radius: 6px;
-  transition: all 0.2s ease;
+  border-radius: var(--size-radius-sm);
+  transition: all var(--size-duration-fast) ease;
   opacity: 0.7;
 }
 
 .l-drawer__close:hover {
-  background: rgba(0, 0, 0, 0.08);
+  background: var(--color-bg-hover);
   color: var(--l-notification-text);
   opacity: 1;
 }
@@ -149,30 +149,30 @@
 /* 内容区域 */
 .l-drawer__body {
   flex: 1;
-  padding: 20px;
+  padding: var(--size-space-lg);
   overflow: auto;
-  font-size: 14px;
+  font-size: var(--size-font-md);
   color: var(--l-notification-text);
-  line-height: 1.6;
+  line-height: var(--size-line-relaxed);
 }
 
 /* 底部区域 */
 .l-drawer__footer {
   display: flex;
   justify-content: flex-end;
-  gap: 10px;
-  padding: 16px 20px;
-  border-top: 1px solid var(--l-notification-border);
+  gap: var(--size-space-xs);
+  padding: var(--size-space-md) var(--size-space-lg);
+  border-top: var(--size-border-width-thin) solid var(--l-notification-border);
   flex-shrink: 0;
 }
 
 /* ==================== 遮罩动画 ==================== */
 .l-drawer-mask-enter-active {
-  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity var(--size-duration-normal) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .l-drawer-mask-leave-active {
-  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity var(--size-duration-fast) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .l-drawer-mask-enter-from,
@@ -184,11 +184,11 @@
 
 /* 左侧抽屉动画 */
 .l-drawer-left-enter-active {
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform var(--size-duration-normal) cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .l-drawer-left-leave-active {
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--size-duration-fast) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .l-drawer-left-enter-from,
@@ -198,11 +198,11 @@
 
 /* 右侧抽屉动画 */
 .l-drawer-right-enter-active {
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform var(--size-duration-normal) cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .l-drawer-right-leave-active {
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--size-duration-fast) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .l-drawer-right-enter-from,
@@ -212,11 +212,11 @@
 
 /* 顶部抽屉动画 */
 .l-drawer-top-enter-active {
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform var(--size-duration-normal) cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .l-drawer-top-leave-active {
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--size-duration-fast) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .l-drawer-top-enter-from,
@@ -226,11 +226,11 @@
 
 /* 底部抽屉动画 */
 .l-drawer-bottom-enter-active {
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform var(--size-duration-normal) cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .l-drawer-bottom-leave-active {
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--size-duration-fast) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .l-drawer-bottom-enter-from,
@@ -268,19 +268,19 @@
   }
 
   .l-drawer__header {
-    padding: 14px 16px;
+    padding: var(--size-space-sm) var(--size-space-md);
   }
 
   .l-drawer__title {
-    font-size: 15px;
+    font-size: var(--size-font-md);
   }
 
   .l-drawer__body {
-    padding: 16px;
+    padding: var(--size-space-md);
   }
 
   .l-drawer__footer {
-    padding: 14px 16px;
+    padding: var(--size-space-sm) var(--size-space-md);
   }
 
   /* 手机端隐藏调整大小手柄 */

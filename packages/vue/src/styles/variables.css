@@ -4,72 +4,79 @@
  */
 
 :root {
-  /* 颜色 */
-  --l-notification-primary: #1890ff;
-  --l-notification-success: #52c41a;
-  --l-notification-warning: #faad14;
-  --l-notification-error: #ff4d4f;
-  --l-notification-info: #1890ff;
+  /* 颜色 - 使用全局 Color CSS 变量 */
+  --l-notification-primary: var(--color-primary);
+  --l-notification-success: var(--color-success);
+  --l-notification-warning: var(--color-warning);
+  --l-notification-error: var(--color-danger);
+  --l-notification-info: var(--color-primary);
 
   /* 背景色 */
-  --l-notification-bg: #ffffff;
-  --l-notification-bg-success: #f6ffed;
-  --l-notification-bg-warning: #fffbe6;
-  --l-notification-bg-error: #fff2f0;
-  --l-notification-bg-info: #e6f7ff;
+  --l-notification-bg: var(--color-bg-container);
+  --l-notification-bg-success: var(--color-success-bg);
+  --l-notification-bg-warning: var(--color-warning-bg);
+  --l-notification-bg-error: var(--color-danger-bg);
+  --l-notification-bg-info: var(--color-primary-bg);
 
   /* 文字颜色 */
-  --l-notification-text: #333333;
-  --l-notification-text-secondary: #666666;
-  --l-notification-text-disabled: #999999;
+  --l-notification-text: var(--color-text-primary);
+  --l-notification-text-secondary: var(--color-text-secondary);
+  --l-notification-text-disabled: var(--color-text-disabled);
 
   /* 边框 */
-  --l-notification-border: #e8e8e8;
-  --l-notification-border-radius: 8px;
-  --l-notification-border-radius-sm: 4px;
+  --l-notification-border: var(--color-border);
+  --l-notification-border-radius: var(--size-radius-md);
+  --l-notification-border-radius-sm: var(--size-radius-sm);
 
   /* 阴影 */
-  --l-notification-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  --l-notification-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
+  --l-notification-shadow: var(--color-shadow-medium);
+  --l-notification-shadow-lg: var(--color-shadow-large);
 
   /* 遮罩 */
-  --l-notification-mask: rgba(0, 0, 0, 0.45);
+  --l-notification-mask: var(--color-bg-mask);
 
-  /* 间距 */
-  --l-notification-padding: 16px;
-  --l-notification-padding-sm: 12px;
-  --l-notification-gap: 8px;
+  /* 间距 - 使用全局 Size CSS 变量 */
+  --l-notification-padding: var(--size-space-md);
+  --l-notification-padding-sm: var(--size-space-sm);
+  --l-notification-gap: var(--size-space-xs);
 
   /* 动画 */
-  --l-notification-duration: 0.3s;
+  --l-notification-duration: var(--size-duration-normal);
   --l-notification-easing: cubic-bezier(0.4, 0, 0.2, 1);
 
   /* 尺寸 */
-  --l-notification-toast-min-width: 200px;
-  --l-notification-toast-max-width: 400px;
-  --l-notification-message-min-width: 200px;
-  --l-notification-message-max-width: 500px;
-  --l-notification-width: 320px;
-  --l-notification-modal-width: 520px;
-  --l-notification-drawer-width: 378px;
+  --l-notification-toast-min-width: var(--size-size-24);
+  --l-notification-toast-max-width: var(--size-size-32);
+  --l-notification-message-min-width: var(--size-size-24);
+  --l-notification-message-max-width: var(--size-size-64);
+  --l-notification-width: var(--size-size-32);
+  --l-notification-modal-width: var(--size-size-64);
+  --l-notification-drawer-width: var(--size-size-32);
 }
 
-/* 暗色主题 */
+/* 暗色模式支持 - 统一使用 data-theme-mode 属性 */
+[data-theme-mode="dark"] {
+  /* 颜色会自动从全局 CSS 变量继承暗色模式的值 */
+  --l-notification-bg: var(--color-bg-container);
+  --l-notification-bg-success: var(--color-success-bg);
+  --l-notification-bg-warning: var(--color-warning-bg);
+  --l-notification-bg-error: var(--color-danger-bg);
+  --l-notification-bg-info: var(--color-primary-bg);
+
+  --l-notification-text: var(--color-text-primary);
+  --l-notification-text-secondary: var(--color-text-secondary);
+  --l-notification-text-disabled: var(--color-text-disabled);
+
+  --l-notification-border: var(--color-border);
+  --l-notification-shadow: var(--color-shadow-medium);
+  --l-notification-shadow-lg: var(--color-shadow-large);
+  --l-notification-mask: var(--color-bg-mask);
+}
+
+/* 兼容旧的深色模式选择器 */
 [data-theme="dark"],
 .dark {
-  --l-notification-bg: #1f1f1f;
-  --l-notification-bg-success: #162312;
-  --l-notification-bg-warning: #2b2111;
-  --l-notification-bg-error: #2a1215;
-  --l-notification-bg-info: #111d2c;
-
-  --l-notification-text: #ffffff;
-  --l-notification-text-secondary: #a6a6a6;
-  --l-notification-text-disabled: #666666;
-
-  --l-notification-border: #434343;
-  --l-notification-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  --l-notification-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4);
-  --l-notification-mask: rgba(0, 0, 0, 0.65);
+  --l-notification-bg: var(--color-bg-container);
+  --l-notification-text: var(--color-text-primary);
+  --l-notification-border: var(--color-border);
 }
-
