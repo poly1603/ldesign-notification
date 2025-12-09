@@ -54,15 +54,12 @@
   "main": "./cjs/index.cjs",
   "module": "./esm/index.js",
   "types": "./esm/index.d.ts",
-  "unpkg": "./dist/index.min.js",
-  "jsdelivr": "./dist/index.min.js",
+  "unpkg": "./dist/index.js",
+  "jsdelivr": "./dist/index.js",
   "files": [
     "README.md",
     "LICENSE",
-    "CHANGELOG.md",
-    "esm",
-    "cjs",
-    "dist"
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "ldesign-builder build",

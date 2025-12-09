@@ -51,9 +51,6 @@ export default defineConfig({
     '@ldesign/notification-core': 'LDesignNotificationCore',
   },
 
-  // 库类型
-  libraryType: 'vue3',
-
   // 打包器
   bundler: 'rollup',
 

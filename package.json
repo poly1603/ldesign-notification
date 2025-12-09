@@ -1,8 +1,7 @@
 {
   "name": "@ldesign/notification",
   "version": "0.1.0",
-  "private": true,
-  "description": "LDesign 通知系统 - 包含 core 和 vue 子包",
+  "description": "LDesign 通知系统 - 统一导出 core 和 vue 子包",
   "keywords": [
     "ldesign",
     "notification",
@@ -14,13 +13,48 @@
   ],
   "author": "LDesign Team",
   "license": "MIT",
-  "workspaces": [
-    "packages/*"
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./es/index.d.ts",
+      "import": "./es/index.js",
+      "require": "./lib/index.cjs",
+      "default": "./es/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./lib/index.cjs",
+  "module": "./es/index.js",
+  "types": "./es/index.d.ts",
+  "unpkg": "./dist/index.min.js",
+  "jsdelivr": "./dist/index.min.js",
+  "files": [
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "es",
+    "lib",
+    "dist"
   ],
   "scripts": {
-    "build": "pnpm -r build",
-    "dev": "pnpm -r --parallel dev",
-    "clean": "pnpm -r clean",
-    "lint": "pnpm -r lint"
-  }
+    "build": "ldesign-builder build",
+    "build:packages": "pnpm --filter './packages/*' build",
+    "dev": "ldesign-builder build --mode development --watch",
+    "clean": "rimraf es lib dist"
+  },
+  "dependencies": {
+    "@ldesign/notification-core": "workspace:*",
+    "@ldesign/notification-vue": "workspace:*"
+  },
+  "devDependencies": {
+    "@ldesign/builder": "workspace:*",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.7.3"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "typings": "./es/index.d.ts",
+  "browser": "./dist/index.js"
 }
