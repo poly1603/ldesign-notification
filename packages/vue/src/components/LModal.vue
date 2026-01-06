@@ -607,45 +607,61 @@ const getCloseIcon = (): Component => {
 }
 
 /**
- * 获取最大化图标 SVG
+ * 获取最大化图标 SVG (Windows 风格)
  * @returns SVG 组件
  */
 const getMaximizeIcon = (): Component => {
   if (isMaximized.value) {
-    // 还原图标
+    // 还原图标 - Windows 风格的双层窗口
     return h('svg', {
       xmlns: 'http://www.w3.org/2000/svg',
-      width: '14',
-      height: '14',
-      viewBox: '0 0 24 24',
+      width: '12',
+      height: '12',
+      viewBox: '0 0 12 12',
       fill: 'none',
-      stroke: 'currentColor',
-      'stroke-width': '2',
-      'stroke-linecap': 'round',
-      'stroke-linejoin': 'round',
     }, [
-      h('path', { d: 'M8 3H5a2 2 0 0 0-2 2v3' }),
-      h('path', { d: 'M21 8V5a2 2 0 0 0-2-2h-3' }),
-      h('path', { d: 'M3 16v3a2 2 0 0 0 2 2h3' }),
-      h('path', { d: 'M16 21h3a2 2 0 0 0 2-2v-3' }),
+      // 后面的小窗口
+      h('rect', {
+        x: '3',
+        y: '0.5',
+        width: '8',
+        height: '8',
+        rx: '1',
+        stroke: 'currentColor',
+        'stroke-width': '1.2',
+        fill: 'none',
+      }),
+      // 前面的大窗口
+      h('rect', {
+        x: '0.5',
+        y: '3',
+        width: '8',
+        height: '8',
+        rx: '1',
+        stroke: 'currentColor',
+        'stroke-width': '1.2',
+        fill: 'var(--color-bg-popover, #fff)',
+      }),
     ])
   }
-  // 最大化图标
+  // 最大化图标 - Windows 风格的单层窗口
   return h('svg', {
     xmlns: 'http://www.w3.org/2000/svg',
-    width: '14',
-    height: '14',
-    viewBox: '0 0 24 24',
+    width: '12',
+    height: '12',
+    viewBox: '0 0 12 12',
     fill: 'none',
-    stroke: 'currentColor',
-    'stroke-width': '2',
-    'stroke-linecap': 'round',
-    'stroke-linejoin': 'round',
   }, [
-    h('path', { d: 'M8 3v3a2 2 0 0 1-2 2H3' }),
-    h('path', { d: 'M21 8h-3a2 2 0 0 1-2-2V3' }),
-    h('path', { d: 'M3 16h3a2 2 0 0 1 2 2v3' }),
-    h('path', { d: 'M16 21v-3a2 2 0 0 1 2-2h3' }),
+    h('rect', {
+      x: '1',
+      y: '1',
+      width: '10',
+      height: '10',
+      rx: '1',
+      stroke: 'currentColor',
+      'stroke-width': '1.2',
+      fill: 'none',
+    }),
   ])
 }
 
@@ -707,7 +723,7 @@ const modalRef = ref<HTMLElement | null>(null)
     <template v-if="isDeclarativeMode">
       <!-- 遮罩 -->
       <Transition name="l-modal-mask">
-        <div v-if="mask && visible" class="l-modal__mask" :style="{ zIndex: 1000 }"
+        <div v-if="mask && visible" class="l-modal__mask" style="z-index: 2000;"
           @click="handleDeclarativeMaskClick" />
       </Transition>
 
@@ -716,7 +732,7 @@ const modalRef = ref<HTMLElement | null>(null)
         <div v-if="visible" class="l-modal-wrapper" :class="{
           'l-modal-wrapper--centered': centered && !needsFixedPosition && !isMaximized,
           'l-modal-wrapper--maximized': isMaximized,
-        }" :style="{ zIndex: 1001 }">
+        }" style="z-index: 2001;">
           <div ref="modalRef" class="l-modal" :class="{
             'l-modal--draggable': draggable,
             'l-modal--resizable': resizable,
@@ -764,14 +780,14 @@ const modalRef = ref<HTMLElement | null>(null)
       <template v-for="item in visibleItems" :key="item.id">
         <!-- 遮罩 -->
         <Transition name="l-modal-mask">
-          <div v-if="item.config.mask !== false && item.visible" class="l-modal__mask" :style="{ zIndex: item.zIndex }"
+          <div v-if="item.config.mask !== false && item.visible" class="l-modal__mask" :style="{ zIndex: 2000 + item.zIndex }"
             @click="handleMaskClick(item)" />
         </Transition>
 
         <!-- 弹窗内容 -->
         <Transition :name="getAnimationName((item.config as ExtendedModalConfig).animation)">
           <div v-if="item.visible" class="l-modal-wrapper"
-            :class="{ 'l-modal-wrapper--centered': item.config.centered }" :style="{ zIndex: item.zIndex + 1 }">
+            :class="{ 'l-modal-wrapper--centered': item.config.centered }" :style="{ zIndex: 2001 + item.zIndex }">
             <div class="l-modal" :class="[item.config.className, { 'l-modal--loading': item.loading }]"
               :style="{ ...getModalStyle(item), ...item.config.style }" role="dialog" aria-modal="true">
               <!-- 头部 -->

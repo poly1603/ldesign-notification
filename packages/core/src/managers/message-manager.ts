@@ -207,10 +207,74 @@ export class MessageManager extends EventEmitter<MessageEvents> {
   }
 
   /**
+   * 更新 Message
+   * @param id - Message ID
+   * @param options - 更新的配置
+   */
+  update(id: string, options: Partial<MessageConfig>): void {
+    const item = this._items.get(id)
+    if (!item)
+      return
+
+    // 更新属性
+    if (options.content !== undefined)
+      item.content = options.content
+    if (options.type !== undefined) {
+      item.type = options.type
+      item.icon = options.icon || DEFAULT_TOAST_ICONS[options.type]
+    }
+    if (options.icon !== undefined)
+      item.icon = options.icon
+    if (options.showClose !== undefined)
+      item.showClose = options.showClose
+    if (options.className !== undefined)
+      item.className = options.className
+    if (options.style !== undefined)
+      item.style = options.style || {}
+
+    // 触发更新事件（需要添加到 MessageEvents）
+  }
+
+  /**
    * 配置全局选项
+   * @param config - 要更新的配置
    */
   configure(config: MessageManagerConfig): void {
     Object.assign(this._config, config)
+  }
+
+  /**
+   * 获取指定 ID 的 Message
+   * @param id - Message ID
+   * @returns Message 实例或 undefined
+   */
+  get(id: string): MessageItem | undefined {
+    return this._items.get(id)
+  }
+
+  /**
+   * 检查 Message 是否存在
+   * @param id - Message ID
+   * @returns 是否存在
+   */
+  has(id: string): boolean {
+    return this._items.has(id)
+  }
+
+  /**
+   * 销毁管理器
+   * @description 清理所有资源，取消所有定时器
+   */
+  dispose(): void {
+    // 取消所有定时器
+    this._timers.forEach(timer => timer.cancel())
+    this._timers.clear()
+
+    // 清空所有 Message
+    this._items.clear()
+
+    // 移除所有事件监听
+    this.removeAllListeners()
   }
 
   /** 计算垂直偏移 */

@@ -3,7 +3,11 @@
  * @description LDesign 通知系统核心模块 - 框架无关的通知管理功能
  * @author LDesign Team
  * @license MIT
+ * @module @ldesign/notification-core
  */
+
+// 常量导出
+export * from './constants'
 
 // 类型导出
 export * from './types'

@@ -1,380 +1,365 @@
 /**
  * Notification 样式
- * @description 现代化 Notification 通知样式，支持流畅动画和响应式设计
+ * @description 现代化 Notification 通知卡片 - 简洁大方、美观大气的桌面通知风格
  */
 
+/* 容器 */
 .l-notification-container {
   pointer-events: none;
 }
 
+/* 列表 */
 .l-notification-list {
   display: flex;
   flex-direction: column;
-  gap: var(--size-space-sm);
+  gap: 12px;
   position: relative;
-  /* 确保有最小高度，避免最后一个离开时容器高度突变 */
-  min-height: var(--size-border-width-thin);
+  min-height: 1px;
 }
 
-/* 包装器 - 用于动画过渡，是 TransitionGroup 的直接子元素 */
+/* 包装器 */
 .l-notification-wrapper {
-  /* 使用 block 布局，让高度由内容决定 */
   display: block;
-  /* 添加 will-change 优化动画性能 */
   will-change: transform, opacity;
 }
 
+/* ==================== Notification 主体 ==================== */
 .l-notification {
   display: flex;
   flex-direction: column;
-  width: var(--l-notification-width);
-  background: var(--l-notification-bg);
-  border-radius: var(--size-radius-lg);
-  box-shadow: 0 var(--size-space-xs) var(--size-space-lg) calc(-1 * var(--size-space-xxs)) var(--color-shadow-medium),
-    0 var(--size-space-xxs) var(--size-space-xs) calc(-1 * var(--size-space-xxs)) var(--color-shadow-small);
+  width: 380px;
+  /* 白色背景 */
+  background-color: #ffffff;
+  background-color: var(--color-bg-popover, #ffffff);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   pointer-events: auto;
   overflow: hidden;
-  backdrop-filter: blur(var(--size-space-xs));
-  -webkit-backdrop-filter: blur(var(--size-space-xs));
-  /* 使用 will-change 优化动画性能 */
-  will-change: transform, opacity;
-  /* 确保元素有正确的盒模型 */
   box-sizing: border-box;
 }
 
-/* 类型样式 - 左侧彩色边条 */
+/* ==================== 类型样式 - 左侧彩色边条 ==================== */
 .l-notification--success {
-  border-left: var(--size-space-xxs) solid var(--l-notification-success);
+  border-left: 3px solid #22c55e;
 }
 
 .l-notification--error {
-  border-left: var(--size-space-xxs) solid var(--l-notification-error);
+  border-left: 3px solid #ef4444;
 }
 
 .l-notification--warning {
-  border-left: var(--size-space-xxs) solid var(--l-notification-warning);
+  border-left: 3px solid #f59e0b;
 }
 
 .l-notification--info {
-  border-left: var(--size-space-xxs) solid var(--l-notification-info);
+  border-left: 3px solid #3b82f6;
 }
 
 .l-notification--loading {
-  border-left: var(--size-space-xxs) solid var(--l-notification-info);
+  border-left: 3px solid #3b82f6;
 }
 
-/* 头部区域 */
+/* ==================== 头部区域 ==================== */
 .l-notification__header {
   display: flex;
   align-items: flex-start;
-  gap: var(--size-space-sm);
-  padding: var(--size-space-md);
-  padding-bottom: var(--size-space-xs);
+  gap: 12px;
+  padding: 16px 16px 8px 16px;
 }
 
-/* 图标样式 */
+/* 图标 */
 .l-notification__icon {
   flex-shrink: 0;
-  width: var(--size-icon-lg);
-  height: var(--size-icon-lg);
+  width: 22px;
+  height: 22px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 1px;
 }
 
 .l-notification__icon svg {
-  width: var(--size-icon-md);
-  height: var(--size-icon-md);
+  width: 20px;
+  height: 20px;
 }
 
 .l-notification--success .l-notification__icon {
-  color: var(--l-notification-success);
+  color: var(--ldn-color-success);
 }
 
 .l-notification--error .l-notification__icon {
-  color: var(--l-notification-error);
+  color: var(--ldn-color-error);
 }
 
 .l-notification--warning .l-notification__icon {
-  color: var(--l-notification-warning);
+  color: var(--ldn-color-warning);
 }
 
 .l-notification--info .l-notification__icon,
 .l-notification--loading .l-notification__icon {
-  color: var(--l-notification-info);
+  color: var(--ldn-color-info);
 }
 
-/* Loading 旋转动画 */
+/* Loading 旋转 */
 .l-notification__icon--spin {
-  animation: l-notification-spin var(--size-duration-slow) linear infinite;
+  animation: l-notification-spin 0.8s linear infinite;
 }
 
 @keyframes l-notification-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 /* 标题 */
 .l-notification__title {
   flex: 1;
-  font-weight: var(--size-font-weight-semibold);
-  font-size: var(--size-font-md);
-  color: var(--l-notification-text);
-  line-height: var(--size-line-normal);
+  font-weight: 600;
+  font-size: 14px;
+  color: #1f2937;
+  color: var(--color-text-primary, #1f2937);
+  line-height: 1.5;
 }
 
 /* 关闭按钮 */
 .l-notification__close {
   flex-shrink: 0;
-  width: var(--size-icon-lg);
-  height: var(--size-icon-lg);
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
+  margin: -2px -4px 0 0;
   background: transparent;
   border: none;
+  border-radius: 6px;
+  color: #9ca3af;
   cursor: pointer;
-  color: var(--l-notification-text-secondary);
-  border-radius: var(--size-radius-sm);
-  transition: all var(--size-duration-fast) ease;
-  opacity: 0.6;
-  margin: calc(-1 * var(--size-space-xxs)) calc(-1 * var(--size-space-xxs)) 0 0;
+  transition: all 150ms ease;
 }
 
 .l-notification__close:hover {
-  background: var(--color-bg-hover);
-  color: var(--l-notification-text);
-  opacity: 1;
+  background: rgba(0, 0, 0, 0.04);
+  color: #6b7280;
 }
 
 .l-notification__close:active {
   transform: scale(0.92);
 }
 
-/* 内容区域 */
+/* ==================== 内容区域 ==================== */
 .l-notification__content {
-  padding: 0 var(--size-space-md) var(--size-space-md);
-  font-size: var(--size-font-md);
-  color: var(--l-notification-text-secondary);
-  line-height: var(--size-line-relaxed);
+  padding: 0 16px 16px;
+  padding-left: calc(16px + 22px + 12px);
+  font-size: 14px;
+  color: #6b7280;
+  color: var(--color-text-secondary, #6b7280);
+  line-height: 1.6;
 }
 
-/* 操作按钮区域 */
+/* ==================== 操作按钮区域 ==================== */
 .l-notification__actions {
   display: flex;
-  gap: var(--size-space-xs);
-  padding: 0 var(--size-space-md) var(--size-space-md);
+  gap: 8px;
+  padding: 0 16px 16px;
+  padding-left: calc(16px + 22px + 12px);
 }
 
 .l-notification__action {
-  padding: var(--size-space-xs) var(--size-space-sm);
-  font-size: var(--size-font-sm);
-  font-weight: var(--size-font-weight-medium);
-  border-radius: var(--size-radius-sm);
+  height: 28px;
+  padding: 0 12px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 6px;
   cursor: pointer;
-  transition: all var(--size-duration-fast) ease;
+  transition: all var(--ldn-duration-fast) var(--ldn-easing-default);
 }
 
 .l-notification__action--primary {
-  background: var(--l-notification-primary);
-  color: var(--color-text-inverse);
+  background: var(--ldn-color-primary);
+  color: var(--ldn-text-inverse);
   border: none;
 }
 
 .l-notification__action--primary:hover {
-  opacity: 0.85;
-  transform: translateY(calc(-1 * var(--size-border-width-thin)));
+  filter: brightness(1.05);
+}
+
+.l-notification__action--primary:active {
+  transform: scale(0.98);
 }
 
 .l-notification__action--secondary {
   background: transparent;
-  color: var(--l-notification-text);
-  border: var(--size-border-width-thin) solid var(--l-notification-border);
+  color: var(--ldn-text);
+  border: 1px solid var(--ldn-border);
 }
 
 .l-notification__action--secondary:hover {
-  border-color: var(--l-notification-primary);
-  color: var(--l-notification-primary);
+  background: var(--ldn-bg-hover);
+}
+
+.l-notification__action--secondary:active {
+  transform: scale(0.98);
 }
 
 .l-notification__action--danger {
-  background: var(--l-notification-error);
-  color: var(--color-text-inverse);
+  background: var(--ldn-color-error);
+  color: var(--ldn-text-inverse);
   border: none;
 }
 
 .l-notification__action--danger:hover {
-  opacity: 0.85;
+  filter: brightness(1.05);
+}
+
+.l-notification__action--danger:active {
+  transform: scale(0.98);
 }
 
 .l-notification__action:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  transform: none;
 }
 
-/* 进度条 */
+/* ==================== 进度条 ==================== */
 .l-notification__progress {
-  height: var(--size-space-xxs);
-  background: var(--color-bg-hover);
+  height: 3px;
+  background: var(--ldn-bg-hover);
 }
 
 .l-notification__progress-bar {
   height: 100%;
-  background: var(--l-notification-primary);
-  transition: width var(--size-duration-fast) linear;
+  background: var(--ldn-color-primary);
+  transition: width var(--ldn-duration-fast) linear;
 }
 
 /* ==================== 动画 ==================== */
 
-/*
- * 动画方案：
- * 1. 进入：从右侧滑入 + 淡入
- * 2. 离开：淡出 + 向右滑出 + 高度收缩（通过 JS 钩子实现）
- * 3. 移动：其他元素通过 TransitionGroup 的 FLIP 动画自动平滑移动
- */
-
-/* 从右侧滑入动画 */
+/* 从右侧滑入 - 优雅的滑动效果 */
 .l-notification-right-enter-active {
   transition:
-    opacity var(--size-duration-normal) cubic-bezier(0.4, 0, 0.2, 1),
-    transform var(--size-duration-normal) cubic-bezier(0.22, 1, 0.36, 1);
+    opacity var(--ldn-duration-moderate) var(--ldn-easing-out),
+    transform var(--ldn-duration-moderate) var(--ldn-easing-elegant);
 }
 
 .l-notification-right-leave-active {
   transition:
-    opacity var(--size-duration-normal) cubic-bezier(0.4, 0, 0.2, 1),
-    transform var(--size-duration-normal) cubic-bezier(0.4, 0, 0.2, 1),
-    height var(--size-duration-normal) cubic-bezier(0.4, 0, 0.2, 1),
-    margin var(--size-duration-normal) cubic-bezier(0.4, 0, 0.2, 1),
-    padding var(--size-duration-normal) cubic-bezier(0.4, 0, 0.2, 1);
+    opacity var(--ldn-duration-fast) var(--ldn-easing-in),
+    transform var(--ldn-duration-fast) var(--ldn-easing-in),
+    height var(--ldn-duration-fast) var(--ldn-easing-in),
+    margin var(--ldn-duration-fast) var(--ldn-easing-in),
+    padding var(--ldn-duration-fast) var(--ldn-easing-in);
   overflow: hidden;
 }
 
 .l-notification-right-enter-from {
   opacity: 0;
-  transform: translateX(var(--size-size-8));
+  transform: translateX(50%);
 }
 
 .l-notification-right-leave-to {
   opacity: 0;
-  transform: translateX(var(--size-size-8));
+  transform: translateX(50%);
 }
 
-/* 移动动画 */
 .l-notification-right-move {
-  transition: transform var(--size-duration-normal) cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--ldn-duration-moderate) var(--ldn-easing-elegant);
 }
 
-/* 从左侧滑入动画 */
+/* 从左侧滑入 */
 .l-notification-left-enter-active {
   transition:
-    opacity var(--size-duration-normal) cubic-bezier(0.4, 0, 0.2, 1),
-    transform var(--size-duration-normal) cubic-bezier(0.22, 1, 0.36, 1);
+    opacity var(--ldn-duration-moderate) var(--ldn-easing-out),
+    transform var(--ldn-duration-moderate) var(--ldn-easing-elegant);
 }
 
 .l-notification-left-leave-active {
   transition:
-    opacity var(--size-duration-normal) cubic-bezier(0.4, 0, 0.2, 1),
-    transform var(--size-duration-normal) cubic-bezier(0.4, 0, 0.2, 1),
-    height var(--size-duration-normal) cubic-bezier(0.4, 0, 0.2, 1),
-    margin var(--size-duration-normal) cubic-bezier(0.4, 0, 0.2, 1),
-    padding var(--size-duration-normal) cubic-bezier(0.4, 0, 0.2, 1);
+    opacity var(--ldn-duration-fast) var(--ldn-easing-in),
+    transform var(--ldn-duration-fast) var(--ldn-easing-in),
+    height var(--ldn-duration-fast) var(--ldn-easing-in),
+    margin var(--ldn-duration-fast) var(--ldn-easing-in),
+    padding var(--ldn-duration-fast) var(--ldn-easing-in);
   overflow: hidden;
 }
 
 .l-notification-left-enter-from {
   opacity: 0;
-  transform: translateX(calc(-1 * var(--size-size-8)));
+  transform: translateX(-50%);
 }
 
 .l-notification-left-leave-to {
   opacity: 0;
-  transform: translateX(calc(-1 * var(--size-size-8)));
+  transform: translateX(-50%);
 }
 
 .l-notification-left-move {
-  transition: transform var(--size-duration-normal) cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--ldn-duration-moderate) var(--ldn-easing-elegant);
 }
 
-/* 兼容旧动画名（默认右侧） */
+/* 默认动画（兼容） */
 .l-notification-enter-active {
   transition:
-    opacity var(--size-duration-normal) cubic-bezier(0.4, 0, 0.2, 1),
-    transform var(--size-duration-normal) cubic-bezier(0.22, 1, 0.36, 1);
+    opacity var(--ldn-duration-moderate) var(--ldn-easing-out),
+    transform var(--ldn-duration-moderate) var(--ldn-easing-elegant);
 }
 
 .l-notification-leave-active {
   transition:
-    opacity var(--size-duration-normal) cubic-bezier(0.4, 0, 0.2, 1),
-    transform var(--size-duration-normal) cubic-bezier(0.4, 0, 0.2, 1),
-    height var(--size-duration-normal) cubic-bezier(0.4, 0, 0.2, 1),
-    margin var(--size-duration-normal) cubic-bezier(0.4, 0, 0.2, 1),
-    padding var(--size-duration-normal) cubic-bezier(0.4, 0, 0.2, 1);
+    opacity var(--ldn-duration-fast) var(--ldn-easing-in),
+    transform var(--ldn-duration-fast) var(--ldn-easing-in),
+    height var(--ldn-duration-fast) var(--ldn-easing-in),
+    margin var(--ldn-duration-fast) var(--ldn-easing-in),
+    padding var(--ldn-duration-fast) var(--ldn-easing-in);
   overflow: hidden;
 }
 
 .l-notification-enter-from {
   opacity: 0;
-  transform: translateX(var(--size-size-8));
+  transform: translateX(50%);
 }
 
 .l-notification-leave-to {
   opacity: 0;
-  transform: translateX(var(--size-size-8));
+  transform: translateX(50%);
 }
 
 .l-notification-move {
-  transition: transform var(--size-duration-normal) cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--ldn-duration-moderate) var(--ldn-easing-elegant);
 }
 
-/* ==================== 响应式设计 ==================== */
-
-/* 平板设备 */
-@media (max-width: 1024px) {
-  .l-notification {
-    width: var(--l-notification-width);
-  }
-}
-
-/* 手机设备 */
+/* ==================== 响应式 ==================== */
 @media (max-width: 640px) {
   .l-notification {
-    width: calc(100vw - var(--size-size-8));
-    max-width: var(--l-notification-width);
-    border-radius: var(--size-radius-md);
+    width: calc(100vw - 32px);
+    max-width: var(--ldn-notification-width);
+    border-radius: var(--ldn-radius-md);
   }
 
   .l-notification__header {
-    padding: var(--size-space-sm);
-    padding-bottom: var(--size-space-xs);
+    padding: var(--ldn-space-3);
+    padding-bottom: var(--ldn-space-2);
+    gap: var(--ldn-space-2);
   }
 
   .l-notification__icon svg {
-    width: var(--size-icon-sm);
-    height: var(--size-icon-sm);
+    width: var(--ldn-icon-sm);
+    height: var(--ldn-icon-sm);
   }
 
   .l-notification__title {
-    font-size: var(--size-font-md);
+    font-size: var(--ldn-font-size-sm);
   }
 
   .l-notification__content {
-    padding: 0 var(--size-space-sm) var(--size-space-sm);
-    font-size: var(--size-font-sm);
+    padding: 0 var(--ldn-space-3) var(--ldn-space-3);
+    padding-left: calc(var(--ldn-space-3) + var(--ldn-icon-lg) + var(--ldn-space-2));
+    font-size: var(--ldn-font-size-sm);
   }
 
   .l-notification__actions {
-    padding: 0 var(--size-space-sm) var(--size-space-sm);
-  }
-
-  .l-notification__action {
-    padding: var(--size-space-xs) var(--size-space-sm);
-    font-size: var(--size-space-sm);
+    padding: 0 var(--ldn-space-3) var(--ldn-space-3);
+    padding-left: calc(var(--ldn-space-3) + var(--ldn-icon-lg) + var(--ldn-space-2));
   }
 }

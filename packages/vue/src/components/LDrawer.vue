@@ -255,7 +255,6 @@ const declarativeDrawerStyle = computed<CSSProperties>(() => {
   }
 
   return {
-    zIndex: 1000,
     ...getDrawerSizeStyle(props.placement as DrawerPlacement, size as number),
   }
 })
@@ -281,7 +280,7 @@ const visibleItems = computed(() => {
       <!-- 遮罩 -->
       <Transition name="l-drawer-mask">
         <div
-          v-if="mask && visible" class="l-drawer__mask" :style="{ zIndex: 1000 }"
+          v-if="mask && visible" class="l-drawer__mask" style="z-index: 2000;"
           @click="handleDeclarativeMaskClick"
         />
       </Transition>
@@ -293,7 +292,7 @@ const visibleItems = computed(() => {
             `l-drawer--${placement}`,
             { 'l-drawer--resizable': resizable },
             { 'l-drawer--resizing': resizeState.isResizing },
-          ]" :style="declarativeDrawerStyle" role="dialog" aria-modal="true"
+          ]" :style="{ ...declarativeDrawerStyle, zIndex: 2001 }" role="dialog" aria-modal="true"
         >
           <!-- 调整大小手柄 -->
           <div
@@ -330,7 +329,7 @@ const visibleItems = computed(() => {
         <!-- 遮罩 -->
         <Transition name="l-drawer-mask">
           <div
-            v-if="item.config.mask !== false && item.visible" class="l-drawer__mask" :style="{ zIndex: item.zIndex }"
+            v-if="item.config.mask !== false && item.visible" class="l-drawer__mask" :style="{ zIndex: 2000 + item.zIndex }"
             @click="handleMaskClick(item)"
           />
         </Transition>
@@ -341,7 +340,7 @@ const visibleItems = computed(() => {
             v-if="item.visible" class="l-drawer" :class="[
               `l-drawer--${item.config.placement || 'right'}`,
               item.config.className,
-            ]" :style="{ ...getDrawerStyle(item), ...item.config.style }" role="dialog" aria-modal="true"
+            ]" :style="{ ...getDrawerStyle(item), ...item.config.style, zIndex: 2001 + item.zIndex }" role="dialog" aria-modal="true"
           >
             <!-- 头部 -->
             <div v-if="item.config.showHeader !== false" class="l-drawer__header">

@@ -210,6 +210,26 @@ const handleClose = (id: string): void => {
 }
 
 /**
+ * 暂停 Toast 计时器（鼠标悬停时）
+ * @param item - Toast 项
+ */
+const handleMouseEnter = (item: ToastItem): void => {
+  if (item.pauseOnHover && item.duration > 0) {
+    manager.pause(item.id)
+  }
+}
+
+/**
+ * 恢复 Toast 计时器（鼠标移出时）
+ * @param item - Toast 项
+ */
+const handleMouseLeave = (item: ToastItem): void => {
+  if (item.pauseOnHover && item.duration > 0) {
+    manager.resume(item.id)
+  }
+}
+
+/**
  * 获取动画方向
  * @param position - 位置
  * @returns 动画类名后缀
@@ -252,6 +272,8 @@ const getAnimationDirection = (position: string): string => {
             ]"
             :style="item.style"
             @click="item.onClick?.()"
+            @mouseenter="handleMouseEnter(item)"
+            @mouseleave="handleMouseLeave(item)"
           >
             <span v-if="item.showIcon" class="l-toast__icon">
               <component :is="getIconSvg(item.type)" />

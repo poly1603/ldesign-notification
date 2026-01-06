@@ -1,28 +1,33 @@
 /**
  * Drawer 样式
- * @description 现代化 Drawer 抽屉样式，支持四个方向滑入滑出、拖动调整大小
+ * @description 现代化 Drawer 抽屉 - 简洁大方、美观大气的侧边面板设计
  */
 
+/* ==================== 容器 ==================== */
 .l-drawer-wrapper {
   position: fixed;
   inset: 0;
+  z-index: 2001;
 }
 
+/* 遮罩 */
 .l-drawer__mask {
   position: fixed;
   inset: 0;
-  background: var(--color-bg-mask);
-  backdrop-filter: blur(var(--size-space-xxs));
-  -webkit-backdrop-filter: blur(var(--size-space-xxs));
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.45);
 }
 
+/* ==================== Drawer 主体 ==================== */
 .l-drawer {
   position: fixed;
+  z-index: 2001;
   display: flex;
   flex-direction: column;
-  background: var(--l-notification-bg);
-  box-shadow: 0 var(--size-space-xs) var(--size-size-4) calc(-1 * var(--size-space-xs)) var(--color-shadow-large),
-    0 var(--size-space-xxs) var(--size-space-md) calc(-1 * var(--size-space-xxs)) var(--color-shadow-medium);
+  /* 白色背景 */
+  background-color: #ffffff;
+  background-color: var(--color-bg-popover, #ffffff);
+  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.12);
   overflow: hidden;
   will-change: transform;
 }
@@ -35,47 +40,51 @@
   user-select: none;
 }
 
-/* 方向定位 */
+/* ==================== 方向定位 ==================== */
 .l-drawer--left {
   top: 0;
   left: 0;
   bottom: 0;
+  box-shadow: 8px 0 24px rgba(0, 0, 0, 0.12);
 }
 
 .l-drawer--right {
   top: 0;
   right: 0;
   bottom: 0;
+  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.12);
 }
 
 .l-drawer--top {
   top: 0;
   left: 0;
   right: 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 .l-drawer--bottom {
   bottom: 0;
   left: 0;
   right: 0;
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.12);
 }
 
-/* 调整大小手柄 */
+/* ==================== 调整大小手柄 ==================== */
 .l-drawer__resize-handle {
   position: absolute;
   background: transparent;
   z-index: 10;
-  transition: background var(--size-duration-fast) ease;
+  transition: background 150ms ease;
 }
 
 .l-drawer__resize-handle:hover {
-  background: var(--color-bg-hover);
+  background: rgba(0, 0, 0, 0.04);
 }
 
 .l-drawer__resize-handle--left {
   top: 0;
   right: 0;
-  width: var(--size-space-xs);
+  width: 4px;
   height: 100%;
   cursor: ew-resize;
 }
@@ -83,7 +92,7 @@
 .l-drawer__resize-handle--right {
   top: 0;
   left: 0;
-  width: var(--size-space-xs);
+  width: 4px;
   height: 100%;
   cursor: ew-resize;
 }
@@ -92,7 +101,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: var(--size-space-xs);
+  height: 4px;
   cursor: ns-resize;
 }
 
@@ -100,79 +109,79 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: var(--size-space-xs);
+  height: 4px;
   cursor: ns-resize;
 }
 
-/* 头部区域 */
+/* ==================== 头部区域 ==================== */
 .l-drawer__header {
   display: flex;
   align-items: center;
-  padding: var(--size-space-md) var(--size-space-lg);
-  border-bottom: var(--size-border-width-thin) solid var(--l-notification-border);
+  padding: 20px 24px 16px;
   flex-shrink: 0;
 }
 
 .l-drawer__title {
   flex: 1;
-  font-weight: var(--size-font-weight-semibold);
-  font-size: var(--size-font-lg);
-  color: var(--l-notification-text);
-  line-height: var(--size-line-tight);
+  font-weight: 600;
+  font-size: 16px;
+  color: #1f2937;
+  color: var(--color-text-primary, #1f2937);
+  line-height: 1.4;
+  margin: 0;
 }
 
 .l-drawer__close {
-  width: var(--size-icon-lg);
-  height: var(--size-icon-lg);
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
   background: transparent;
   border: none;
+  border-radius: 6px;
+  color: #9ca3af;
   cursor: pointer;
-  color: var(--l-notification-text-secondary);
-  border-radius: var(--size-radius-sm);
-  transition: all var(--size-duration-fast) ease;
-  opacity: 0.7;
+  transition: all 150ms ease;
 }
 
 .l-drawer__close:hover {
-  background: var(--color-bg-hover);
-  color: var(--l-notification-text);
-  opacity: 1;
+  background: rgba(0, 0, 0, 0.04);
+  color: #6b7280;
 }
 
 .l-drawer__close:active {
   transform: scale(0.92);
 }
 
-/* 内容区域 */
+/* ==================== 内容区域 ==================== */
 .l-drawer__body {
   flex: 1;
-  padding: var(--size-space-lg);
+  padding: 0 24px 20px;
   overflow: auto;
-  font-size: var(--size-font-md);
-  color: var(--l-notification-text);
-  line-height: var(--size-line-relaxed);
+  font-size: 14px;
+  color: #4b5563;
+  color: var(--color-text-secondary, #4b5563);
+  line-height: 1.6;
 }
 
-/* 底部区域 */
+/* ==================== 底部区域 ==================== */
 .l-drawer__footer {
   display: flex;
   justify-content: flex-end;
-  gap: var(--size-space-xs);
-  padding: var(--size-space-md) var(--size-space-lg);
-  border-top: var(--size-border-width-thin) solid var(--l-notification-border);
+  gap: 12px;
+  padding: 16px 24px 20px;
   flex-shrink: 0;
 }
 
 /* ==================== 遮罩动画 ==================== */
 .l-drawer-mask-enter-active {
-  transition: opacity var(--size-duration-normal) cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity var(--ldn-duration-moderate) var(--ldn-easing-out);
 }
 
 .l-drawer-mask-leave-active {
-  transition: opacity var(--size-duration-fast) cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity var(--ldn-duration-fast) var(--ldn-easing-in);
 }
 
 .l-drawer-mask-enter-from,
@@ -182,13 +191,13 @@
 
 /* ==================== 方向动画 ==================== */
 
-/* 左侧抽屉动画 */
+/* 左侧 - 优雅的滑动效果 */
 .l-drawer-left-enter-active {
-  transition: transform var(--size-duration-normal) cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform var(--ldn-duration-moderate) var(--ldn-easing-elegant);
 }
 
 .l-drawer-left-leave-active {
-  transition: transform var(--size-duration-fast) cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--ldn-duration-fast) var(--ldn-easing-in);
 }
 
 .l-drawer-left-enter-from,
@@ -196,13 +205,13 @@
   transform: translateX(-100%);
 }
 
-/* 右侧抽屉动画 */
+/* 右侧 */
 .l-drawer-right-enter-active {
-  transition: transform var(--size-duration-normal) cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform var(--ldn-duration-moderate) var(--ldn-easing-elegant);
 }
 
 .l-drawer-right-leave-active {
-  transition: transform var(--size-duration-fast) cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--ldn-duration-fast) var(--ldn-easing-in);
 }
 
 .l-drawer-right-enter-from,
@@ -210,13 +219,13 @@
   transform: translateX(100%);
 }
 
-/* 顶部抽屉动画 */
+/* 顶部 */
 .l-drawer-top-enter-active {
-  transition: transform var(--size-duration-normal) cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform var(--ldn-duration-moderate) var(--ldn-easing-elegant);
 }
 
 .l-drawer-top-leave-active {
-  transition: transform var(--size-duration-fast) cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--ldn-duration-fast) var(--ldn-easing-in);
 }
 
 .l-drawer-top-enter-from,
@@ -224,13 +233,13 @@
   transform: translateY(-100%);
 }
 
-/* 底部抽屉动画 */
+/* 底部 */
 .l-drawer-bottom-enter-active {
-  transition: transform var(--size-duration-normal) cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform var(--ldn-duration-moderate) var(--ldn-easing-elegant);
 }
 
 .l-drawer-bottom-leave-active {
-  transition: transform var(--size-duration-fast) cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--ldn-duration-fast) var(--ldn-easing-in);
 }
 
 .l-drawer-bottom-enter-from,
@@ -238,52 +247,48 @@
   transform: translateY(100%);
 }
 
-/* ==================== 响应式设计 ==================== */
-
-/* 平板设备 */
+/* ==================== 响应式 ==================== */
 @media (max-width: 1024px) {
-
   .l-drawer--left,
   .l-drawer--right {
-    max-width: 80vw;
+    max-width: 85vw;
   }
 
   .l-drawer--top,
   .l-drawer--bottom {
-    max-height: 60vh;
+    max-height: 65vh;
   }
 }
 
-/* 手机设备 */
 @media (max-width: 640px) {
-
   .l-drawer--left,
   .l-drawer--right {
-    max-width: 90vw;
+    max-width: 100vw;
+    width: 100vw !important;
   }
 
   .l-drawer--top,
   .l-drawer--bottom {
-    max-height: 70vh;
+    max-height: 80vh;
   }
 
   .l-drawer__header {
-    padding: var(--size-space-sm) var(--size-space-md);
+    padding: 14px 16px;
   }
 
   .l-drawer__title {
-    font-size: var(--size-font-md);
+    font-size: 15px;
   }
 
   .l-drawer__body {
-    padding: var(--size-space-md);
+    padding: 16px;
   }
 
   .l-drawer__footer {
-    padding: var(--size-space-sm) var(--size-space-md);
+    padding: 12px 16px;
+    gap: 8px;
   }
 
-  /* 手机端隐藏调整大小手柄 */
   .l-drawer__resize-handle {
     display: none;
   }

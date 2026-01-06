@@ -1,16 +1,16 @@
-# @ldesign/notification
-
 <div align="center">
 
-# 🔔 @ldesign/notification v0.1.0
+# 🔔 @ldesign/notification
 
-**全功能通知系统 - Toast/Message/Notification/Alert，完美支持 Vue 3 和 React 18**
+**现代化通知系统 - Toast / Message / Notification / Modal / Drawer**
 
 [![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](./CHANGELOG.md)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7+-blue.svg)](./tsconfig.json)
+[![Vue 3](https://img.shields.io/badge/Vue-3.4+-42b883.svg)](https://vuejs.org/)
 [![Bundle Size](https://img.shields.io/badge/bundle-<15KB-success.svg)](#特性)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
 
-[特性](#特性) • [安装](#安装) • [快速开始](#快速开始) • [示例项目](#示例项目) • [API 文档](#api-文档)
+**[特性](#-特性)** • **[安装](#-安装)** • **[快速开始](#-快速开始)** • **[API 文档](#-api-文档)** • **[示例](#-示例)**
 
 </div>
 
@@ -18,41 +18,44 @@
 
 ## ✨ 特性
 
-### 🎯 四大通知类型
+### 🎯 五大通知类型
 
-- **Toast** - 轻量级提示，9个位置，自动消失
-- **Message** - 顶部消息条，类型图标，优雅过渡
-- **Notification** - 桌面风格通知，支持操作按钮
-- **Alert** - 模态对话框，支持输入和确认
+| 类型 | 描述 | 使用场景 |
+|------|------|----------|
+| **Toast** | 轻量级提示，深色简洁风格 | 操作反馈、状态提示 |
+| **Message** | 白色卡片 + 彩色图标 | 系统消息、表单验证 |
+| **Notification** | 桌面风格通知卡片 | 新消息、更新提醒 |
+| **Modal** | 模态对话框 | 确认操作、表单弹窗 |
+| **Drawer** | 侧边抽屉 | 设置面板、详情页 |
 
 ### ⚡ 核心能力
 
-- ✅ **框架支持** - Vue 3 + React 18 完整集成
-- ✅ **TypeScript** - 100% 类型安全
-- ✅ **主题系统** - Light/Dark + 自定义 CSS 变量
-- ✅ **动画引擎** - 40+ 预设动画
-- ✅ **位置控制** - 9 个位置（top/bottom/center + 组合）
-- ✅ **堆叠策略** - overlap/stack/replace/collapse
-- ✅ **Promise API** - 自动处理 loading/success/error
-- ✅ **无障碍** - ARIA 标签，键盘导航
-- ✅ **响应式** - 桌面/移动完美适配
-- ✅ **轻量级** - 核心 <15KB gzip
+- ✅ **Vue 3 深度集成** - Composables + Components + Plugin
+- ✅ **TypeScript** - 100% 类型安全，完整的类型导出
+- ✅ **主题系统** - Light/Dark 自动切换 + CSS 变量定制
+- ✅ **动画系统** - 8 种 Modal 动画 + 各组件平滑过渡
+- ✅ **位置控制** - 7 个位置选择
+- ✅ **Promise API** - 自动 loading → success/error
+- ✅ **PauseOnHover** - 鼠标悬停时暂停计时器
+- ✅ **无障碍** - ARIA 属性、焦点管理、键盘导航
+- ✅ **响应式** - 自适应桌面/移动端
+- ✅ **减少动态偏好** - 支持 `prefers-reduced-motion`
+- ✅ **独立使用** - CSS 变量有回退值，无需全局样式
 
 ### 🎨 高级功能
 
-- 🎭 **自定义渲染** - Headless UI 模式
-- 🔊 **声音提示** - 可选音效系统
-- 📱 **手势支持** - 滑动关闭（移动端）
-- ⏱️ **时间控制** - pauseOnHover，自定义时长
-- 📊 **通知中心** - 历史记录和管理
-- 🌐 **浏览器通知** - 原生 Notification API 集成
+- 🎭 **Modal 拖拽** - 可拖动、可调整大小、可最大化
+- 📁 **Drawer 调整** - 拖动调整宽度/高度
+- 🔄 **批量操作** - `closeMultiple` 批量关闭
+- 🧹 **资源清理** - `dispose()` 完全销毁管理器
+- 🌐 **SSR 兼容** - 支持服务端渲染
 
 ---
 
 ## 📦 安装
 
 ```bash
-# pnpm
+# pnpm (推荐)
 pnpm add @ldesign/notification
 
 # npm
@@ -62,112 +65,130 @@ npm install @ldesign/notification
 yarn add @ldesign/notification
 ```
 
+**子包独立安装（可选）：**
+
+```bash
+# 仅核心功能（框架无关）
+pnpm add @ldesign/notification-core
+
+# Vue 3 集成
+pnpm add @ldesign/notification-vue
+```
+
 ---
 
 ## 🚀 快速开始
 
-### 原生 JavaScript/TypeScript
-
-```typescript
-import { notification } from '@ldesign/notification'
-import '@ldesign/notification/styles'
-
-// Toast
-notification.toast.success('操作成功！')
-notification.toast.error('操作失败！')
-notification.toast.warning('请注意')
-notification.toast.info('提示信息')
-
-// Message
-notification.message('这是一条消息')
-notification.message.success('保存成功')
-
-// Notification
-notification.notification({
-  title: '新消息',
-  message: '您有一条新消息',
-  type: 'info'
-})
-
-// Alert
-const confirmed = await notification.alert.confirm('确定要删除吗？')
-if (confirmed) {
-  console.log('用户确认删除')
-}
-```
-
-### Vue 3
+### Vue 3 基础用法
 
 ```vue
-<template>
-  <div>
-    <button @click="showToast">显示 Toast</button>
-    <button @click="showNotification">显示 Notification</button>
-    <button @click="showAlert">显示 Alert</button>
-  </div>
-</template>
+<script setup lang="ts">
+import { useToast, useMessage, useModal, useDrawer } from '@ldesign/notification-vue'
+// 样式自动包含，无需单独导入
 
-<script setup>
-import { useNotification } from '@ldesign/notification/vue'
+const toast = useToast()
+const message = useMessage()
+const modal = useModal()
+const drawer = useDrawer()
 
-const { toast, notification, alert } = useNotification()
-
+// Toast 提示
 const showToast = () => {
-  toast.success('操作成功！')
+  toast.success('保存成功')
+  toast.error('保存失败')
+  toast.warning('请注意')
+  toast.info('提示信息')
 }
 
-const showNotification = () => {
-  notification({
-    title: '通知',
-    message: '这是一条通知消息',
-    type: 'info'
+// Message 消息
+const showMessage = () => {
+  message.success('操作成功')
+  message.error('操作失败')
+}
+
+// Modal 弹窗
+const showConfirm = async () => {
+  const confirmed = await modal.confirm({
+    title: '确认删除',
+    content: '确定要删除这条记录吗？',
+    confirmText: '删除',
+    confirmType: 'danger'
+  })
+  if (confirmed) {
+    toast.success('删除成功')
+  }
+}
+
+// Drawer 抽屉
+const openDrawer = async () => {
+  await drawer.open({
+    title: '设置',
+    content: '抽屉内容',
+    placement: 'right',
+    width: 400
   })
 }
-
-const showAlert = async () => {
-  const confirmed = await alert.confirm('确定要继续吗？')
-  if (confirmed) {
-    toast.success('已确认')
-  }
-}
 </script>
+
+<template>
+  <!-- 添加组件到根节点 -->
+  <LToast />
+  <LMessage />
+  <LNotification />
+  <LModal />
+  <LDrawer />
+</template>
 ```
 
-### React 18
+### 全局注册（可选）
 
-```tsx
-import { useNotification } from '@ldesign/notification/react'
+```ts
+// main.ts
+import { createApp } from 'vue'
+import NotificationPlugin from '@ldesign/notification-vue'
+import App from './App.vue'
 
-function App() {
-  const { toast, notification, alert } = useNotification()
-  
-  const showToast = () => {
-    toast.success('操作成功！')
-  }
-  
-  const showNotification = () => {
-    notification({
-      title: '通知',
-      message: '这是一条通知消息',
-      type: 'info'
-    })
-  }
-  
-  const showAlert = async () => {
-    const confirmed = await alert.confirm('确定要继续吗？')
-    if (confirmed) {
-      toast.success('已确认')
+const app = createApp(App)
+app.use(NotificationPlugin)
+app.mount('#app')
+```
+
+### Promise 绑定（推荐）
+
+```ts
+const toast = useToast()
+
+// 自动处理 loading → success/error
+const saveData = async () => {
+  await toast.promise(
+    fetch('/api/save', { method: 'POST' }),
+    {
+      loading: '保存中...',
+      success: '保存成功',
+      error: (err) => `保存失败: ${err.message}`
     }
-  }
-  
-  return (
-    <div>
-      <button onClick={showToast}>显示 Toast</button>
-      <button onClick={showNotification}>显示 Notification</button>
-      <button onClick={showAlert}>显示 Alert</button>
-    </div>
   )
 }
+
+// 动态成功消息
+await toast.promise(
+  fetchData(),
+  {
+    loading: '加载数据...',
+    success: (data) => `成功加载 ${data.count} 条记录`,
+    error: '加载失败'
+  }
+)
+```
+
+### 不使用 Composable（全局 API）
+
+```ts
+import { toast, message, modal, drawer } from '@ldesign/notification-vue'
+
+// 直接调用，无需组件上下文
+toast.success('保存成功')
+message.error('操作失败')
+modal.confirm({ title: '确认', content: '确定吗？' })
 ```
 
 ---
@@ -226,6 +247,172 @@ type Position =
   | 'top' | 'top-left' | 'top-right' | 'top-center'
   | 'bottom' | 'bottom-left' | 'bottom-right' | 'bottom-center'
   | 'center'
+```
+
+---
+
+### Message API
+
+```typescript
+// 基础用法
+message(content: string, options?: MessageOptions): string
+message.success(content: string, options?: MessageOptions): string
+message.error(content: string, options?: MessageOptions): string
+message.warning(content: string, options?: MessageOptions): string
+message.info(content: string, options?: MessageOptions): string
+message.loading(content: string, options?: MessageOptions): string
+
+// 控制方法
+message.close(id: string): void
+message.closeAll(): void
+message.update(id: string, content: string, options?: MessageOptions): void
+```
+
+### MessageOptions
+
+```typescript
+interface MessageOptions {
+  id?: string
+  duration?: number       // 默认 3000ms
+  showClose?: boolean     // 显示关闭按钮
+  center?: boolean        // 居中布局
+  icon?: any
+  grouping?: boolean      // 相同内容合并
+  offset?: number         // 顶部偏移
+  onClose?: (id: string) => void
+}
+```
+
+---
+
+### Notification API
+
+```typescript
+// 基础用法
+notification(options: NotificationOptions): string
+notification.success(options: NotificationOptions): string
+notification.error(options: NotificationOptions): string
+notification.warning(options: NotificationOptions): string
+notification.info(options: NotificationOptions): string
+
+// 控制方法
+notification.close(id: string): void
+notification.closeAll(): void
+```
+
+### NotificationOptions
+
+```typescript
+interface NotificationOptions {
+  id?: string
+  title: string           // 标题
+  message?: string        // 内容
+  type?: NotificationType
+  position?: Position     // 默认 'top-right'
+  duration?: number       // 默认 4500ms
+  showClose?: boolean
+  icon?: any
+  onClick?: () => void
+  onClose?: () => void
+}
+```
+
+---
+
+### Modal API
+
+```typescript
+// 基础用法
+modal.open(options: ModalOptions): Promise<void>
+modal.close(id?: string): void
+modal.closeAll(): void
+
+// 快捷方法
+modal.confirm(options: ConfirmOptions): Promise<boolean>
+modal.alert(options: AlertOptions): Promise<void>
+modal.prompt(options: PromptOptions): Promise<string | null>
+```
+
+### ModalOptions
+
+```typescript
+interface ModalOptions {
+  id?: string
+  title?: string
+  content?: string | VNode | Component
+  width?: number | string // 默认 520px
+  closable?: boolean      // 显示关闭按钮
+  mask?: boolean          // 显示遮罩
+  maskClosable?: boolean  // 点击遮罩关闭
+  keyboard?: boolean      // ESC 关闭
+  centered?: boolean      // 垂直居中
+  draggable?: boolean     // 可拖动
+  resizable?: boolean     // 可调整大小
+  fullscreen?: boolean    // 全屏模式
+  animation?: ModalAnimation
+  zIndex?: number
+  onOk?: () => void | Promise<void>
+  onCancel?: () => void
+  onClose?: () => void
+}
+
+type ModalAnimation =
+  | 'fade' | 'zoom' | 'slide-up' | 'slide-down'
+  | 'slide-left' | 'slide-right' | 'flip' | 'rotate'
+```
+
+---
+
+### Drawer API
+
+```typescript
+// 基础用法
+drawer.open(options: DrawerOptions): Promise<void>
+drawer.close(id?: string): void
+drawer.closeAll(): void
+```
+
+### DrawerOptions
+
+```typescript
+interface DrawerOptions {
+  id?: string
+  title?: string
+  content?: string | VNode | Component
+  placement?: 'left' | 'right' | 'top' | 'bottom'
+  width?: number | string  // 左右位置时有效
+  height?: number | string // 上下位置时有效
+  closable?: boolean
+  mask?: boolean
+  maskClosable?: boolean
+  keyboard?: boolean
+  resizable?: boolean     // 拖动调整宽度/高度
+  zIndex?: number
+  onClose?: () => void
+}
+```
+
+---
+
+### 类型守卫（Type Guards）
+
+```typescript
+import {
+  isNotificationType,
+  isNotificationPosition,
+  isDrawerPlacement,
+  isRenderFunction,
+  isNotificationStatus
+} from '@ldesign/notification-core'
+
+// 安全类型检查
+if (isNotificationType(type)) {
+  // type is 'success' | 'error' | 'warning' | 'info' | 'loading'
+}
+
+if (isNotificationPosition(pos)) {
+  // pos is Position
+}
 ```
 
 ---
